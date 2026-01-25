@@ -6,8 +6,8 @@
   "homepage": "https://be.linkedin.com/in/mauriziocescon",
   "private": false,
   "engines": {
-    "node": ">=20.10.0",
-    "npm": ">=10.2.3"
+    "node": ">=24.13.0",
+    "npm": ">=11.6.2"
   },
   "scripts": {
     "postinstall": "npm run build",
