@@ -1,8 +1,9 @@
 import { faker } from '@faker-js/faker';
 
-export const getUnknownComponent = (index) => ({
+export const getUnknownComponent = (index: number) => ({
   id: faker.string.uuid(),
   type: 'unknown',
-  order: parseInt(index),
+  order: index,
   valid: true,
+  required: false,
 });

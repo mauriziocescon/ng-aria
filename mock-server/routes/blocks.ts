@@ -2,6 +2,7 @@ import express from 'express';
 
 import { getDb } from '../lowdb.ts';
 import { validate } from '../utils/validation.ts';
+import type { Block, Instance } from '../types.ts';
 
 export const router = express.Router();
 
@@ -10,8 +11,8 @@ router.get('/blocks', (req, res) => {
   const instanceId = req.query.instanceId;
 
   const foundInstance = db.get('instances')
-    .find({ id: instanceId })
-    .value();
+    .find({ id: instanceId } as any)
+    .value() as Instance | undefined;
 
   if (foundInstance) {
     return res.status(200).jsonp(foundInstance.blocks);
@@ -28,15 +29,15 @@ router.put('/blocks', (req, res) => {
   const newBlocks = req.body.blocks;
 
   const foundInstance = db.get('instances')
-    .find({ id: instanceId })
-    .value();
+    .find({ id: instanceId } as any)
+    .value() as Instance | undefined;
 
   if (foundInstance) {
     const currentBlocks = foundInstance.blocks;
 
-    let blocksMap = {};
-    currentBlocks.forEach(block => blocksMap[block.id] = block);
-    newBlocks.forEach(block => blocksMap[block.id] = block);
+    let blocksMap: { [key: string]: Block } = {};
+    currentBlocks.forEach((block: Block) => blocksMap[block.id] = block);
+    newBlocks.forEach((block: Block) => blocksMap[block.id] = block);
     let blocks = Object.keys(blocksMap).map(key => blocksMap[key]);
     blocks = blocks.sort((b1, b2) => {
       return b1.order - b2.order;
@@ -45,7 +46,7 @@ router.put('/blocks', (req, res) => {
     blocks = validate(blocks);
 
     db.get('instances')
-      .find({ id: instanceId })
+      .find({ id: instanceId } as any)
       .assign({ blocks: blocks })
       .write();
 

@@ -6,12 +6,13 @@ import { getCheckBoxConfirmer } from './check-box-confirmer.ts';
 import { getDatePicker } from './date-picker.ts';
 import { getDropdown } from './dropdown.ts';
 import { getTextInput } from './text-input.ts';
+import type { Block, Instance } from '../types.ts';
 
-export const mocks = {
+export const mocks: { instances: Instance[] } = {
   instances: [],
 };
 
-const getRandomBlock = (index) => {
+const getRandomBlock = (index: number): Block => {
   const choice = Math.random();
 
   if (choice < 0.05) {
@@ -31,7 +32,7 @@ const getRandomBlock = (index) => {
 
 // #items
 Array.from({ length: 160 }, (v1, i) => {
-  const instance = { id: `${i} - ${faker.lorem.word()}`, description: faker.lorem.sentences(), blocks: [] };
+  const instance: Instance = { id: `${i} - ${faker.lorem.word()}`, description: faker.lorem.sentences(), blocks: [] };
 
   Array.from({ length: faker.number.int({ min: 1, max: 20 }) }, (v2, j) => {
     instance.blocks.push(getRandomBlock(j));

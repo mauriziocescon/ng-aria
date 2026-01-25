@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-export const getTextInput = (index) => {
+export const getTextInput = (index: number) => {
   const value = faker.datatype.boolean() ? faker.lorem.words(faker.number.int(5)) : undefined;
   const minLength = faker.datatype.boolean() ? faker.number.int(5) : undefined;
   const maxLength = faker.datatype.boolean() ? faker.number.int({ min: 5, max: 10 }) : undefined;
@@ -8,7 +8,7 @@ export const getTextInput = (index) => {
   let textInput = {
     id: faker.string.uuid(),
     type: 'text-input',
-    order: parseInt(index),
+    order: index,
     label: 'TEXT_INPUT.TEXT_INPUT_LABEL',
     value: value,
     required: true,
@@ -23,12 +23,12 @@ export const getTextInput = (index) => {
     return textInput;
   }
 
-  if (minLength >= 0 && value !== undefined && value.length < minLength) {
+  if (minLength !== undefined && minLength >= 0 && value !== undefined && value.length < minLength) {
     textInput.valid = false;
     return textInput;
   }
 
-  if (maxLength >= 0 && value !== undefined && value.length > maxLength) {
+  if (maxLength !== undefined && maxLength >= 0 && value !== undefined && value.length > maxLength) {
     textInput.valid = false;
     return textInput;
   }
