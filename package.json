@@ -5,6 +5,7 @@
   "author": "Maurizio Cescon <maurizio.cescon@gmail.com>",
   "homepage": "https://be.linkedin.com/in/mauriziocescon",
   "private": false,
+  "type": "module",
   "packageManager": "npm@11.6.2",
   "engines": {
     "node": ">=24.13.0",
