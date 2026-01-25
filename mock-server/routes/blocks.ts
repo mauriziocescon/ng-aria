@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { type Request, type Response } from 'express';
 
 import { getDb } from '../lowdb.ts';
 import type { Block, Instance } from '../types/types.ts';
@@ -6,7 +6,7 @@ import { validate } from '../utils/validation.ts';
 
 export const router = express.Router();
 
-router.get('/blocks', (req, res) => {
+router.get('/blocks', (req: Request, res: Response) => {
   const db = getDb();
   const instanceId = req.query.instanceId;
 
@@ -23,7 +23,7 @@ router.get('/blocks', (req, res) => {
   }
 });
 
-router.put('/blocks', (req, res) => {
+router.put('/blocks', (req: Request, res: Response) => {
   const db = getDb();
   const instanceId = req.body.instanceId;
   const newBlocks = req.body.blocks;

@@ -1,10 +1,10 @@
-import express from 'express';
+import express, { type Request, type Response } from 'express';
 
 import { getDb } from '../lowdb.ts';
 
 export const router = express.Router();
 
-router.get('/instances', (req, res) => {
+router.get('/instances', (req: Request, res: Response) => {
   const db = getDb();
   const textSearch = req.query.q;
   const start = parseInt(req.query._start as string) || 0;
