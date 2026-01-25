@@ -4,7 +4,7 @@ export const getCheckBox = (index) => {
   const value = faker.datatype.boolean() ? true : undefined;
 
   return {
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     type: 'check-box',
     order: parseInt(index),
     label: 'CHECK_BOX.CHECK_BOX_LABEL',

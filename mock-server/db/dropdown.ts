@@ -4,7 +4,7 @@ export const getDropdown = (index) => {
   const value = faker.datatype.boolean() ? '1' : undefined;
 
   return {
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     type: 'dropdown',
     order: parseInt(index),
     label: 'DROPDOWN.DROPDOWN_LABEL',

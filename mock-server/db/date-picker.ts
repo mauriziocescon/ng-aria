@@ -4,7 +4,7 @@ export const getDatePicker = (index) => {
   const value = faker.date.future().toISOString();
 
   return {
-    id: faker.datatype.uuid(),
+    id: faker.string.uuid(),
     type: 'date-picker',
     order: parseInt(index),
     label: 'DATE_PICKER.DATE_PICKER_LABEL',

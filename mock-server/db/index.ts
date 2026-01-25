@@ -33,7 +33,7 @@ const getRandomBlock = (index) => {
 Array.from({ length: 160 }, (v1, i) => {
   const instance = { id: `${i} - ${faker.lorem.word()}`, description: faker.lorem.sentences(), blocks: [] };
 
-  Array.from({ length: faker.datatype.number({ min: 1, max: 20 }) }, (v2, j) => {
+  Array.from({ length: faker.number.int({ min: 1, max: 20 }) }, (v2, j) => {
     instance.blocks.push(getRandomBlock(j));
   });
 
