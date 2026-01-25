@@ -15,7 +15,7 @@
     "postinstall": "npm run build",
     "start": "tsc -p ./mock-server/tsconfig.json && cross-env NODE_ENV=production node ./dist/server/server.js",
     "json-server": "node --experimental-strip-types ./mock-server/server.ts",
-    "json-server-watch": "node --watch --experimental-strip-types ./mock-server/server.ts",
+    "json-server-watch": "node --watch-path=./mock-server --experimental-strip-types ./mock-server/server.ts",
     "ng": "ng",
     "serve": "ng serve --open | npm run json-server-watch",
     "build": "ng build --stats-json",
