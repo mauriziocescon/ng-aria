@@ -1,6 +1,6 @@
 import express from 'express';
 
-import {getDb} from '../lowdb.js';
+import { getDb } from '../lowdb.ts';
 
 export const router = express.Router();
 

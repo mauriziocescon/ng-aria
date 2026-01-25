@@ -1,4 +1,4 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 export const getCheckBox = (index) => {
   const value = faker.datatype.boolean() ? true : undefined;

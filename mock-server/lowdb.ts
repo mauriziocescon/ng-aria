@@ -1,6 +1,6 @@
 import jsonServer from 'json-server';
 
-import {mocks} from './db/index.js';
+import { mocks } from './db/index.ts';
 
 const router = jsonServer.router(mocks);
 
@@ -8,4 +8,3 @@ const router = jsonServer.router(mocks);
 // (@{link https://github.com/typicode/lowdb})
 export const getDb = () => router.db;
 export const getRouter = () => router;
-

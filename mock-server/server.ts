@@ -1,20 +1,20 @@
 import path from 'node:path';
-import cors from 'cors';
+import { fileURLToPath } from 'node:url';
 import jsonServer from 'json-server';
-import {getRouter} from './lowdb.js';
+import type { NextFunction, Request, Response } from 'express';
+import { getRouter } from './lowdb.ts';
 
-import {delay} from './middlewares/delay.js';
-import {error} from './middlewares/errors.js';
+import { delay } from './middlewares/delay.ts';
+import { error } from './middlewares/errors.ts';
 
-// routes
-import * as blocks from './routes/blocks.js';
-import * as instances from './routes/instances.js';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const isProduction = process.env.NODE_ENV === 'production';
 
 const app = jsonServer.create();
 const router = getRouter();
-const middlewares = jsonServer.defaults(isProduction ? {static: './dist/ng-material/browser'} : {});
+const middlewares = jsonServer.defaults(isProduction ? { static: './dist/ng-material/browser' } : {});
 
 // set the port of our application
 // process.env.PORT lets the port to be set by Heroku
@@ -28,16 +28,14 @@ app.use(error);
 // To handle POST, PUT and PATCH you need to use a body-parser
 app.use(jsonServer.bodyParser);
 
-// Expose relevant headers
-app.use(cors({exposedHeaders: ['X-Total-Count']}));
+// Rewrite some routes
+app.use(jsonServer.rewriter({}));
 
 // Mount routes
-app.use(`${isProduction ? '/api' : '/'}`, instances.router);
-app.use(`${isProduction ? '/api' : '/'}`, blocks.router);
 app.use(`${isProduction ? '/api' : '/'}`, router);
 
 // Fallback on frontend routes
-app.get('*', (req, res, next) => {
+app.get('*', (req: Request, res: Response, next: NextFunction) => {
   // load index.html (frontend will handle page changes)
   isProduction ? res.sendFile(path.join(__dirname, '../dist/ng-material/browser/index.html')) : next();
 });

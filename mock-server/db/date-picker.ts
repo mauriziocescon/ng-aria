@@ -1,4 +1,4 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 export const getDatePicker = (index) => {
   const value = faker.date.future().toISOString();

@@ -1,11 +1,11 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
-import {getUnknownComponent} from './unknown.js';
-import {getCheckBox} from './check-box.js';
-import {getCheckBoxConfirmer} from './check-box-confirmer.js';
-import {getDatePicker} from './date-picker.js';
-import {getDropdown} from './dropdown.js';
-import {getTextInput} from './text-input.js';
+import { getUnknownComponent } from './unknown.ts';
+import { getCheckBox } from './check-box.ts';
+import { getCheckBoxConfirmer } from './check-box-confirmer.ts';
+import { getDatePicker } from './date-picker.ts';
+import { getDropdown } from './dropdown.ts';
+import { getTextInput } from './text-input.ts';
 
 export const mocks = {
   instances: [],
@@ -30,10 +30,10 @@ const getRandomBlock = (index) => {
 };
 
 // #items
-Array.from({length: 160}, (v1, i) => {
-  const instance = {id: `${i} - ${faker.lorem.word()}`, description: faker.lorem.sentences(), blocks: []};
+Array.from({ length: 160 }, (v1, i) => {
+  const instance = { id: `${i} - ${faker.lorem.word()}`, description: faker.lorem.sentences(), blocks: [] };
 
-  Array.from({length: faker.datatype.number({min: 1, max: 20})}, (v2, j) => {
+  Array.from({ length: faker.datatype.number({ min: 1, max: 20 }) }, (v2, j) => {
     instance.blocks.push(getRandomBlock(j));
   });
 

@@ -1,9 +1,9 @@
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 
 export const getTextInput = (index) => {
   const value = faker.datatype.boolean() ? faker.lorem.words(faker.datatype.number(5)) : undefined;
   const minLength = faker.datatype.boolean() ? faker.datatype.number(5) : undefined;
-  const maxLength = faker.datatype.boolean() ? faker.datatype.number({min: 5, max: 10}) : undefined;
+  const maxLength = faker.datatype.boolean() ? faker.datatype.number({ min: 5, max: 10 }) : undefined;
 
   let textInput = {
     id: faker.datatype.uuid(),

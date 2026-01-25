@@ -1,7 +1,7 @@
 import express from 'express';
 
-import {getDb} from '../lowdb.js';
-import {validate} from '../utils/validation.js';
+import { getDb } from '../lowdb.ts';
+import { validate } from '../utils/validation.ts';
 
 export const router = express.Router();
 
@@ -10,7 +10,7 @@ router.get('/blocks', (req, res) => {
   const instanceId = req.query.instanceId;
 
   const foundInstance = db.get('instances')
-    .find({id: instanceId})
+    .find({ id: instanceId })
     .value();
 
   if (foundInstance) {
@@ -28,7 +28,7 @@ router.put('/blocks', (req, res) => {
   const newBlocks = req.body.blocks;
 
   const foundInstance = db.get('instances')
-    .find({id: instanceId})
+    .find({ id: instanceId })
     .value();
 
   if (foundInstance) {
@@ -45,8 +45,8 @@ router.put('/blocks', (req, res) => {
     blocks = validate(blocks);
 
     db.get('instances')
-      .find({id: instanceId})
-      .assign({blocks: blocks})
+      .find({ id: instanceId })
+      .assign({ blocks: blocks })
       .write();
 
     return res.status(200).jsonp(blocks);

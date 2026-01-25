@@ -1,5 +1,7 @@
+import type { Request, Response, NextFunction } from 'express';
+
 // Simulate server side errors
-export const error = (req, res, next) => {
+export const error = (req: Request, res: Response, next: NextFunction): Response | void => {
   const randomOutcome = Math.random();
   if (randomOutcome < 0.05 && !req.path.startsWith('/api/')) {
     const choice = Math.random();
