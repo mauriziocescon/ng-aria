@@ -38,7 +38,6 @@ app.use(jsonServer.rewriter({}));
 // Mount routes
 app.use(`${isProduction ? '/api' : '/'}`, instances.router);
 app.use(`${isProduction ? '/api' : '/'}`, blocks.router);
-
 app.use(`${isProduction ? '/api' : '/'}`, router);
 
 // Fallback on frontend routes
