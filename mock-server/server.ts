@@ -7,6 +7,10 @@ import { getRouter } from './lowdb.ts';
 import { delay } from './middlewares/delay.ts';
 import { error } from './middlewares/errors.ts';
 
+// routes
+import * as blocks from './routes/blocks.ts';
+import * as instances from './routes/instances.ts';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -32,6 +36,9 @@ app.use(jsonServer.bodyParser);
 app.use(jsonServer.rewriter({}));
 
 // Mount routes
+app.use(`${isProduction ? '/api' : '/'}`, instances.router);
+app.use(`${isProduction ? '/api' : '/'}`, blocks.router);
+
 app.use(`${isProduction ? '/api' : '/'}`, router);
 
 // Fallback on frontend routes
