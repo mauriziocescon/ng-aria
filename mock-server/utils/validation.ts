@@ -1,4 +1,4 @@
-import type { Block } from '../types.ts';
+import type { Block } from '../types/types.ts';
 
 const isCheckBoxBlockValid = (checkBoxBlock: Block) => {
   return checkBoxBlock.required ? !!checkBoxBlock.value : true;

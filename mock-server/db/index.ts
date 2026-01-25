@@ -1,12 +1,13 @@
 import { faker } from '@faker-js/faker';
 
+import type { Block, Instance } from '../types/types.ts';
+
 import { getUnknownComponent } from './unknown.ts';
 import { getCheckBox } from './check-box.ts';
 import { getCheckBoxConfirmer } from './check-box-confirmer.ts';
 import { getDatePicker } from './date-picker.ts';
 import { getDropdown } from './dropdown.ts';
 import { getTextInput } from './text-input.ts';
-import type { Block, Instance } from '../types.ts';
 
 export const mocks: { instances: Instance[] } = {
   instances: [],
