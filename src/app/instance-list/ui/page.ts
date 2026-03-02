@@ -56,14 +56,16 @@ import { InstanceCard } from './instance-card';
 
       <app-scroll-to-top/>
 
-    </div>`,
+    </div>
+  `,
   styles: `
     .instance {
       padding-left: var(--padding-s);
       padding-right: var(--padding-s);
       padding-top: var(--padding-m);
       padding-bottom: var(--padding-m);
-    }`,
+    }
+  `,
 })
 export class InstanceListPage implements OnInit {
   private readonly transloco = inject(TranslocoService);

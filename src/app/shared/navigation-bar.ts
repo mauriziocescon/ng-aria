@@ -46,11 +46,13 @@ import { AppLanguage } from '../core/app-language';
         }
       </mat-menu>
 
-    </mat-toolbar>`,
+    </mat-toolbar>
+  `,
   styles: `
     .spacer {
       flex: 1 1 auto;
-    }`,
+    }
+  `,
 })
 export class NavigationBar {
   private readonly router = inject(Router);

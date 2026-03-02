@@ -20,7 +20,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
   ],
   template: `
     @if (showContent()) {
-      <ng-container [ngTemplateOutlet]="content()"/>
+      <ng-container [ngTemplateOutlet]="content()" />
     }
 
     @if (isLoading()) {
@@ -31,7 +31,8 @@ import { TranslocoPipe } from '@jsverse/transloco';
       <div class="full-width-message" (click)="reload.emit()">{{ "LOADER.RETRY" | transloco }}</div>
     } @else if (isLoadCompleted()) {
       <div class="full-width-message">{{ "LOADER.LOAD_COMPLETED" | transloco }}</div>
-    }`,
+    }
+  `,
   styles: `
     :host.loader {
       display: block;
@@ -86,7 +87,8 @@ import { TranslocoPipe } from '@jsverse/transloco';
           transform: rotate(360deg);
         }
       }
-    }`,
+    }
+  `,
   host: {
     '[class]': 'hostCssClasses()',
   },

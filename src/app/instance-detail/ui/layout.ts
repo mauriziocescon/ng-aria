@@ -17,7 +17,8 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
       <div [class]="rightClass()">
         <ng-container [ngTemplateOutlet]="right()"/>
       </div>
-    </div>`,
+    </div>
+  `,
   styles: `
     .layout {
       display: flex;
@@ -48,7 +49,8 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
     .col-12 {
       flex: 0 0 auto;
       width: 100%;
-    }`,
+    }
+  `,
 })
 export class Layout {
   private readonly breakpointObserver = inject(BreakpointObserver);

@@ -54,7 +54,8 @@ import { DatePickerBlock } from './date-picker-block';
       <mat-card-actions>
         <span appValidityState [valid]="valid()"></span>
       </mat-card-actions>
-    </mat-card>`,
+    </mat-card>
+  `,
 })
 export class DatePicker {
   private readonly instanceDetailStore = inject(InstanceDetailStore);

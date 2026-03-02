@@ -47,7 +47,7 @@ import { TextInputBlock } from './text-input-block';
             (ngModelChange)="valueDidChange()"
             [disabled]="disabled()"
             [required]="required()"
-            placeholder="{{ 'TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | transloco }}"/>
+            placeholder="{{ 'TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | transloco }}" />
           @if (isNotEmpty()) {
             <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextInput()">
               <mat-icon>close</mat-icon>
@@ -61,7 +61,8 @@ import { TextInputBlock } from './text-input-block';
       <mat-card-actions>
         <span appValidityState [valid]="valid()"></span>
       </mat-card-actions>
-    </mat-card>`,
+    </mat-card>
+  `,
 })
 export class TextInput {
   private readonly instanceDetailStore = inject(InstanceDetailStore);

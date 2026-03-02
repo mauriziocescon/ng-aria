@@ -38,14 +38,16 @@ import { BlockCompGenerator } from './blocks/block-comp-generator';
 
     </app-loader>
 
-    <app-scroll-to-top/>`,
+    <app-scroll-to-top/>
+  `,
   styles: `
     .generic-block {
       padding-left: var(--padding-s);
       padding-right: var(--padding-s);
       padding-top: var(--padding-m);
       padding-bottom: var(--padding-m);
-    }`,
+    }
+  `,
 })
 export class BlockList {
   private readonly transloco = inject(TranslocoService);

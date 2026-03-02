@@ -55,7 +55,8 @@ import { InstanceDetailStore } from '../../store/instance-detail-store';
           </div>
         </mat-card-actions>
       </mat-card>
-    </div>`,
+    </div>
+  `,
   styles: `
     .next-step {
       position: sticky;
@@ -69,7 +70,8 @@ import { InstanceDetailStore } from '../../store/instance-detail-store';
           margin: var(--padding-s);
         }
       }
-    }`,
+    }
+  `,
 })
 export class NextStep {
   private readonly location = inject(Location);

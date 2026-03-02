@@ -17,7 +17,8 @@ import { debounceTime } from 'rxjs/operators';
   selector: 'app-scroll-to-top',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="bi bi-arrow-up-circle go-up" (click)="scrollToTop()"></div>`,
+    <div class="bi bi-arrow-up-circle go-up" (click)="scrollToTop()"></div>
+  `,
   styles: `
     .go-up {
       font-size: 3rem;
@@ -31,7 +32,8 @@ import { debounceTime } from 'rxjs/operators';
       right: 3%;
       transform: translateX(-50%);
       z-index: 200;
-    }`,
+    }
+  `,
 })
 export class ScrollToTop implements OnDestroy {
   private readonly zone = inject(NgZone);
@@ -43,7 +45,7 @@ export class ScrollToTop implements OnDestroy {
 
   private readonly domReady = afterNextRender(() => {
     this.manageVisibility();
-    
+
     this.sub = this.zone.runOutsideAngular(() =>
       fromEvent(window, 'scroll')
         .pipe(debounceTime(250))

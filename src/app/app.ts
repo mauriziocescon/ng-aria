@@ -11,8 +11,9 @@ import { NavigationBar } from './shared/navigation-bar';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-navigation-bar/>
-    <router-outlet/>`,
+    <app-navigation-bar />
+    <router-outlet />
+  `,
 })
 export class App {
 }

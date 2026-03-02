@@ -30,7 +30,8 @@ import { NextStep } from './next-step/next-step';
         <app-block-list [instanceId]="instanceId()"/>
       </ng-template>
 
-    </app-instance-detail-layout>`,
+    </app-instance-detail-layout>
+  `,
 })
 export class InstanceDetailPage {
   private readonly route = inject(ActivatedRoute);

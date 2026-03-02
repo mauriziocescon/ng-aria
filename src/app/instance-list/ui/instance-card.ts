@@ -33,11 +33,13 @@ import { Instance } from '../model/instance';
           {{ "INSTANCE.SHOW" | transloco }}
         </button>
       </mat-card-actions>
-    </mat-card>`,
+    </mat-card>
+  `,
   styles: `
     .validity-state {
       padding-left: 15px;
-    }`,
+    }
+  `,
 })
 export class InstanceCard {
   private readonly router = inject(Router);

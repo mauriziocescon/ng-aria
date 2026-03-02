@@ -20,7 +20,8 @@ import { MatCardModule } from '@angular/material/card';
       <mat-card-content>
         {{ "UNKNOWN.ALERT_MSG" | transloco }}
       </mat-card-content>
-    </mat-card>`,
+    </mat-card>
+  `,
 })
 export class Unknown {
   instanceId = input.required<string>();

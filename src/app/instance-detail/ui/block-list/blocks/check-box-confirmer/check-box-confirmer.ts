@@ -44,7 +44,8 @@ import { CheckBoxConfirmerBlock } from './check-box-confirmer-block';
       <mat-card-actions>
         <span appValidityState [valid]="valid()"></span>
       </mat-card-actions>
-    </mat-card>`,
+    </mat-card>
+  `,
 })
 export class CheckBoxConfirmer {
   private readonly transloco = inject(TranslocoService);

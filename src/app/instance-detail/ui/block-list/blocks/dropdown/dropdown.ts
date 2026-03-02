@@ -52,7 +52,8 @@ import { DropdownBlock } from './dropdown-block';
       <mat-card-actions>
         <span appValidityState [valid]="valid()"></span>
       </mat-card-actions>
-    </mat-card>`,
+    </mat-card>
+  `,
 })
 export class Dropdown {
   private readonly instanceDetailStore = inject(InstanceDetailStore);

@@ -43,7 +43,8 @@ import { CheckBoxBlock } from './check-box-block';
       <mat-card-actions>
         <span appValidityState [valid]="valid()"></span>
       </mat-card-actions>
-    </mat-card>`,
+    </mat-card>
+  `,
 })
 export class CheckBox {
   private readonly instanceDetailStore = inject(InstanceDetailStore);

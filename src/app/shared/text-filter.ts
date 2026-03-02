@@ -35,7 +35,8 @@ import { MatInputModule } from '@angular/material/input';
           <mat-icon>close</mat-icon>
         </button>
       }
-    </mat-form-field>`,
+    </mat-form-field>
+  `,
   styles: `
     .search-field {
       display: flex;
@@ -43,7 +44,8 @@ import { MatInputModule } from '@angular/material/input';
       padding-right: var(--padding-s);
       padding-top: var(--padding-m);
       padding-bottom: var(--padding-m);
-    }`,
+    }
+  `,
 })
 export class TextFilter {
   protected readonly value = signal('');
