@@ -18,7 +18,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 const app = jsonServer.create();
 const router = getRouter();
-const middlewares = jsonServer.defaults(isProduction ? { static: './dist/ng-material/browser' } : {});
+const middlewares = jsonServer.defaults(isProduction ? { static: './dist/ng-aria/browser' } : {});
 
 // set the port of our application
 // process.env.PORT lets the port to be set by Heroku
@@ -43,7 +43,7 @@ app.use(`${isProduction ? '/api' : '/'}`, router);
 // Fallback on frontend routes
 app.get('*', (req: Request, res: Response, next: NextFunction) => {
   // load index.html (frontend will handle page changes)
-  isProduction ? res.sendFile(path.join(__dirname, '../dist/ng-material/browser/index.html')) : next();
+  isProduction ? res.sendFile(path.join(__dirname, '../dist/ng-aria/browser/index.html')) : next();
 });
 
 // Start listening

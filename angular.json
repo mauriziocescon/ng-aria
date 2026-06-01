@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "ng-material": {
+    "ng-aria": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -70,10 +70,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ng-material:build:production"
+              "buildTarget": "ng-aria:build:production"
             },
             "development": {
-              "buildTarget": "ng-material:build:development"
+              "buildTarget": "ng-aria:build:development"
             }
           },
           "defaultConfiguration": "development"
