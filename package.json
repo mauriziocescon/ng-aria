@@ -45,7 +45,6 @@
     "@jsverse/transloco": "^8.2.0",
     "@ngrx/operators": "^21.0.0",
     "@ngrx/signals": "^21.0.0",
-    "bootstrap-icons": "^1.11.3",
     "lodash": "^4.17.21",
     "ngx-infinite-scroll": "^21.0.0",
     "ngxtension": "^7.0.2",
