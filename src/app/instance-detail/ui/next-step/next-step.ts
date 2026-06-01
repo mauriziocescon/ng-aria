@@ -17,30 +17,30 @@ import { InstanceDetailStore } from '../../store/instance-detail-store';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="sticky top-0">
-      <section class="ui-card">
-        <header class="ui-card-header">{{ "NEXT_STEP.HEADER" | transloco }}</header>
+    <div class="sticky top-20">
+      <section class="ui-card border-brand/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(239,246,255,0.9))]">
+        <header class="ui-card-header border-b border-slate-100 pb-3">{{ "NEXT_STEP.HEADER" | transloco }}</header>
         <footer class="ui-card-actions justify-start">
-          <div class="flex flex-col gap-3">
+          <div class="flex w-full flex-col gap-3">
             <button
-              class="ui-button ui-button-primary"
+              class="ui-button ui-button-primary w-full"
               (click)="moveToNextStep()"
               [disabled]="!instanceDetailStore.isNextStepEnable()">
               {{ "NEXT_STEP.NEXT_STEP" | transloco }}
             </button>
 
             @if (isSynchronized()) {
-              <div class="flex items-center gap-2 text-sm text-success">
+              <div class="flex items-center gap-2 rounded-md bg-emerald-50 px-3 py-2 text-sm font-medium text-success ring-1 ring-emerald-100">
                 <app-icon name="done" />
                 <span>{{ "NEXT_STEP.SYNC" | transloco }}</span>
               </div>
             } @else if (instanceDetailStore.isSyncingBlocks()) {
-            <div class="flex items-center gap-2 text-sm text-slate-600">
+            <div class="flex items-center gap-2 rounded-md bg-slate-50 px-3 py-2 text-sm font-medium text-slate-600 ring-1 ring-slate-100">
               <app-icon name="sync" />
               <span>{{ "NEXT_STEP.SYNCING" | transloco }}</span>
             </div>
           } @else if (canRetrySync()) {
-            <button class="ui-button ui-button-secondary" (click)="retrySynchronization()">
+            <button class="ui-button ui-button-secondary w-full" (click)="retrySynchronization()">
               <app-icon name="redo" />
               <span>{{ "NEXT_STEP.RETRY" | transloco }}</span>
             </button>

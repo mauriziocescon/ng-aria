@@ -17,7 +17,7 @@ import { debounceTime } from 'rxjs/operators';
   selector: 'app-scroll-to-top',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <button type="button" class="go-up" aria-label="Scroll to top" (click)="scrollToTop()">
+    <button type="button" class="go-up ui-icon-button" aria-label="Scroll to top" (click)="scrollToTop()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="1em"
@@ -36,20 +36,22 @@ import { debounceTime } from 'rxjs/operators';
   styles: `
     .go-up {
       position: fixed;
-      width: 3rem;
-      height: 3rem;
+      width: 3.25rem;
+      height: 3.25rem;
       padding: 0;
-      border: 0;
-      background: transparent;
-      color: var(--primary-color);
-      font-size: 3rem;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.9);
+      color: #004494;
+      font-size: 1.8rem;
       line-height: 1;
-      opacity: 0.7;
-      bottom: 5px;
-      right: 3%;
-      transform: translateX(-50%);
+      opacity: 0.95;
+      bottom: 1rem;
+      right: 1rem;
       z-index: 200;
       cursor: pointer;
+      border-radius: 0.75rem;
+      box-shadow: 0 18px 45px -24px rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
     }
 
     .go-up svg {

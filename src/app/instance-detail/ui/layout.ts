@@ -10,7 +10,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="layout">
+    <div class="mx-auto flex w-full max-w-7xl flex-wrap gap-y-4 px-4 py-6 sm:px-6 lg:px-8">
       <div [class]="leftClass()">
         <ng-container [ngTemplateOutlet]="left()"/>
       </div>
@@ -18,38 +18,6 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
         <ng-container [ngTemplateOutlet]="right()"/>
       </div>
     </div>
-  `,
-  styles: `
-    .layout {
-      display: flex;
-      flex-flow: wrap;
-      width: 100%;
-    }
-
-    .col-2 {
-      flex: 0 0 auto;
-      width: 16.66666667%;
-    }
-
-    .col-4 {
-      flex: 0 0 auto;
-      width: 33.33333333%;
-    }
-
-    .col-8 {
-      flex: 0 0 auto;
-      width: 66.66666667%;
-    }
-
-    .col-10 {
-      flex: 0 0 auto;
-      width: 83.33333333%;
-    }
-
-    .col-12 {
-      flex: 0 0 auto;
-      width: 100%;
-    }
   `,
 })
 export class Layout {
@@ -68,29 +36,29 @@ export class Layout {
   protected readonly leftClass = computed(() => {
     const state = this.breakPoints();
     if (state.breakpoints[Breakpoints.XLarge]) {
-      return 'col-2';
+      return 'w-full xl:w-1/5 xl:pr-4';
     } else if (state.breakpoints[Breakpoints.Large]) {
-      return 'col-2';
+      return 'w-full lg:w-1/4 lg:pr-4';
     } else if (state.breakpoints[Breakpoints.Small]) {
-      return 'col-12';
+      return 'w-full';
     } else if (state.breakpoints[Breakpoints.XSmall]) {
-      return 'col-12';
+      return 'w-full';
     } else {
-      return 'col-4';
+      return 'w-full md:w-1/3 md:pr-4';
     }
   });
   protected readonly rightClass = computed(() => {
     const state = this.breakPoints();
     if (state.breakpoints[Breakpoints.XLarge]) {
-      return 'col-10';
+      return 'w-full xl:w-4/5';
     } else if (state.breakpoints[Breakpoints.Large]) {
-      return 'col-10';
+      return 'w-full lg:w-3/4';
     } else if (state.breakpoints[Breakpoints.Small]) {
-      return 'col-12';
+      return 'w-full';
     } else if (state.breakpoints[Breakpoints.XSmall]) {
-      return 'col-12';
+      return 'w-full';
     } else {
-      return 'col-8';
+      return 'w-full md:w-2/3';
     }
   });
 }

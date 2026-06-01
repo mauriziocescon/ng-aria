@@ -19,17 +19,17 @@ import { Icon } from './icon';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <label class="block px-3 py-4">
+    <label class="block rounded-lg border border-white/70 bg-white/80 p-4 shadow-sm ring-1 ring-slate-950/5 backdrop-blur">
       <span class="ui-label">{{ 'TEXT_FILTER.PLACEHOLDER' | transloco }}</span>
       <span class="relative block">
         <input
-          class="ui-input pr-10"
+          class="ui-input pr-11"
           type="text"
           [(ngModel)]="value">
       @if (isNotEmpty()) {
         <button
           type="button"
-          class="ui-icon-button absolute right-0 top-1/2 -translate-y-1/2"
+          class="ui-icon-button absolute right-1 top-1/2 -translate-y-1/2 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
           aria-label="Clear"
           (click)="resetTextFilter()">
           <app-icon name="close" />

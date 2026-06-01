@@ -15,17 +15,21 @@ import { Instance } from '../model/instance';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <section class="ui-card">
+    <section class="ui-card group flex h-full flex-col">
       <header class="ui-card-header">
-        <div>{{ title() }}</div>
-        <div class="mt-1 flex items-center gap-3 text-sm font-normal text-slate-500">
-          <span>{{ blocksCounter() }}</span>
+        <div class="flex items-start justify-between gap-3">
+          <div class="min-w-0 truncate text-lg">{{ title() }}</div>
+          <span class="rounded-md bg-sky-50 px-2 py-1 text-xs font-semibold text-brand ring-1 ring-sky-100">
+            {{ blocksCounter() }}
+          </span>
+        </div>
+        <div class="mt-3 flex items-center text-sm font-normal text-slate-500">
           <span appValidityState [valid]="validityState()"></span>
         </div>
       </header>
-      <div class="ui-card-content">{{ bodyText() }}</div>
+      <div class="ui-card-content line-clamp-3 flex-1">{{ bodyText() }}</div>
       <footer class="ui-card-actions">
-        <button class="ui-button ui-button-primary" (click)="selectInstance()">
+        <button class="ui-button ui-button-primary w-full sm:w-auto" (click)="selectInstance()">
           {{ "INSTANCE.SHOW" | transloco }}
         </button>
       </footer>

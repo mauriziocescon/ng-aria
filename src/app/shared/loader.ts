@@ -24,7 +24,7 @@ import { TranslocoPipe } from '@jsverse/transloco';
     }
 
     @if (isLoading()) {
-      <div class="spinner"></div>
+      <div class="spinner" aria-label="Loading"></div>
     } @else if (hasNoData()) {
       <div class="full-width-message">{{ "LOADER.NO_RESULT" | transloco }}</div>
     } @else if (shouldRetry()) {
@@ -45,8 +45,8 @@ import { TranslocoPipe } from '@jsverse/transloco';
         left: 0;
         height: 100%;
         width: 100%;
-        background-color: lightgrey;
-        opacity: 0.15;
+        background: rgba(248, 250, 252, 0.55);
+        backdrop-filter: blur(2px);
         content: '';
         z-index: 5000;
       }
@@ -68,11 +68,12 @@ import { TranslocoPipe } from '@jsverse/transloco';
 
           width: 60px;
           height: 60px;
-          border: 5px solid lightgray;
-          border-bottom-color: #666;
+          border: 5px solid rgba(14, 116, 144, 0.18);
+          border-bottom-color: #004494;
           border-radius: 50%;
           box-sizing: border-box;
           animation: rotation 1s linear infinite;
+          box-shadow: 0 18px 45px -22px rgba(15, 23, 42, 0.65);
 
           content: '';
           z-index: 5000;

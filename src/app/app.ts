@@ -11,8 +11,12 @@ import { NavigationBar } from './shared/navigation-bar';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <app-navigation-bar />
-    <router-outlet />
+    <div class="min-h-dvh">
+      <app-navigation-bar />
+      <main class="min-h-[calc(100dvh-4rem)]">
+        <router-outlet />
+      </main>
+    </div>
   `,
 })
 export class App {

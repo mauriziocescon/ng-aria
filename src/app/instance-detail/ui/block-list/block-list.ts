@@ -29,11 +29,11 @@ import { BlockCompGenerator } from './blocks/block-comp-generator';
       (reload)="reloadList()">
 
       <ng-template #content>
-        @for (block of blocks(); track block.id) {
-          <div class="px-3 py-4">
+        <div class="space-y-4">
+          @for (block of blocks(); track block.id) {
             <app-block-comp-generator [instanceId]="instanceId()" [block]="block"/>
-          </div>
-        }
+          }
+        </div>
       </ng-template>
 
     </app-loader>

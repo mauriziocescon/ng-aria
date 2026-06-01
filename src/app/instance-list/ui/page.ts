@@ -30,11 +30,14 @@ import { InstanceCard } from './instance-card';
   ],
   template: `
     <div
+      class="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 lg:px-8"
       infiniteScroll
       [infiniteScrollDisabled]="instanceListStore.isInfiniteScrollDisabled()"
       (scrolled)="pageDidScroll()">
 
-      <app-text-filter (valueDidChange)="textSearchDidChange($event)"/>
+      <div class="mb-3">
+        <app-text-filter (valueDidChange)="textSearchDidChange($event)"/>
+      </div>
 
       <app-loader
         [content]="content"
@@ -45,11 +48,11 @@ import { InstanceCard } from './instance-card';
         (reload)="loadList()">
 
         <ng-template #content>
-          @for (instance of instanceListStore.instances(); track instance.id) {
-            <div class="px-3 py-4">
+          <div class="grid gap-4 md:grid-cols-2">
+            @for (instance of instanceListStore.instances(); track instance.id) {
               <app-instance-card [instance]="instance"/>
-            </div>
-          }
+            }
+          </div>
         </ng-template>
 
       </app-loader>

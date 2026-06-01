@@ -18,21 +18,21 @@
     margin: 0;
     color-scheme: light;
     font-family: ui-sans-serif, system-ui, sans-serif;
-    @apply bg-slate-50 text-slate-950 antialiased;
+    @apply bg-[linear-gradient(135deg,#f8fafc_0%,#eef6ff_44%,#f4fbf6_100%)] text-slate-950 antialiased;
   }
 }
 
 @layer components {
   .ui-card {
-    @apply rounded-lg border border-slate-200 bg-white p-4 shadow-sm;
+    @apply rounded-lg border border-white/70 bg-white/90 p-5 shadow-[0_18px_55px_-35px_rgba(15,23,42,0.45)] ring-1 ring-slate-950/5 backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_24px_70px_-38px_rgba(14,116,144,0.55)];
   }
 
   .ui-card-header {
-    @apply mb-3 text-base font-semibold text-slate-950;
+    @apply mb-4 text-base font-semibold text-slate-950;
   }
 
   .ui-card-content {
-    @apply text-sm text-slate-700;
+    @apply text-sm leading-6 text-slate-600;
   }
 
   .ui-card-actions {
@@ -40,43 +40,43 @@
   }
 
   .ui-button {
-    @apply inline-flex h-10 items-center justify-center gap-2 rounded-md px-4 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex h-10 items-center justify-center gap-2 rounded-md px-4 text-sm font-semibold shadow-sm transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none;
   }
 
   .ui-button-primary {
-    @apply bg-brand text-white hover:bg-blue-800 focus-visible:outline-brand;
+    @apply bg-[linear-gradient(135deg,#004494,#0f766e)] text-white shadow-brand/25 hover:brightness-110 focus-visible:outline-brand;
   }
 
   .ui-button-secondary {
-    @apply border border-slate-300 bg-white text-slate-900 hover:bg-slate-50 focus-visible:outline-brand;
+    @apply border border-slate-200 bg-white/85 text-slate-900 hover:border-sky-200 hover:bg-sky-50 focus-visible:outline-brand;
   }
 
   .ui-icon-button {
-    @apply inline-flex size-10 items-center justify-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex size-10 items-center justify-center rounded-md transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-95 disabled:pointer-events-none disabled:opacity-50;
   }
 
   .ui-input,
   .ui-select {
-    @apply h-10 w-full rounded-md border border-slate-300 bg-white px-3 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 disabled:bg-slate-100 disabled:text-slate-500;
+    @apply h-11 w-full rounded-md border border-slate-200 bg-white/90 px-3 text-sm shadow-inner shadow-slate-950/5 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-100 disabled:bg-slate-100 disabled:text-slate-500;
   }
 
   .ui-label {
-    @apply mb-1 block text-sm font-medium text-slate-800;
+    @apply mb-1.5 block text-sm font-semibold text-slate-800;
   }
 
   .ui-hint {
-    @apply mt-1 block text-xs text-slate-500;
+    @apply mt-1.5 block text-xs text-slate-500;
   }
 
   .ui-dialog-backdrop {
-    @apply bg-slate-950/50;
+    @apply bg-slate-950/55 backdrop-blur-sm;
   }
 
   .ui-dialog-panel {
-    @apply w-[min(92vw,28rem)] rounded-lg border border-slate-200 bg-white p-5 shadow-xl;
+    @apply w-[min(92vw,28rem)] rounded-lg border border-white/70 bg-white/95 p-6 shadow-2xl ring-1 ring-slate-950/10 backdrop-blur;
   }
 
   .full-width-message {
-    @apply w-full py-5 text-center text-2xl font-bold;
+    @apply mx-auto my-8 w-[min(92vw,44rem)] rounded-lg border border-white/70 bg-white/80 px-6 py-8 text-center text-lg font-semibold text-slate-700 shadow-sm ring-1 ring-slate-950/5;
   }
 }
