@@ -2,8 +2,6 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { Router } from '@angular/router';
 
 import { TranslocoPipe } from '@jsverse/transloco';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 
 import { ValidityState } from '../../shared/validity-state';
 
@@ -13,32 +11,25 @@ import { Instance } from '../model/instance';
   selector: 'app-instance-card',
   imports: [
     TranslocoPipe,
-    MatButtonModule,
-    MatCardModule,
     ValidityState,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>{{ title() }}</mat-card-title>
-        <mat-card-subtitle>
+    <section class="ui-card">
+      <header class="ui-card-header">
+        <div>{{ title() }}</div>
+        <div class="mt-1 flex items-center gap-3 text-sm font-normal text-slate-500">
           <span>{{ blocksCounter() }}</span>
-          <span class="validity-state" appValidityState [valid]="validityState()"></span>
-        </mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>{{ bodyText() }}</mat-card-content>
-      <mat-card-actions align="end">
-        <button mat-button color="primary" (click)="selectInstance()">
+          <span appValidityState [valid]="validityState()"></span>
+        </div>
+      </header>
+      <div class="ui-card-content">{{ bodyText() }}</div>
+      <footer class="ui-card-actions">
+        <button class="ui-button ui-button-primary" (click)="selectInstance()">
           {{ "INSTANCE.SHOW" | transloco }}
         </button>
-      </mat-card-actions>
-    </mat-card>
-  `,
-  styles: `
-    .validity-state {
-      padding-left: 15px;
-    }
+      </footer>
+    </section>
   `,
 })
 export class InstanceCard {

@@ -1,32 +1,27 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
+
+import { ModalAlert as ModalAlertData } from './modal';
 
 @Component({
   selector: 'app-modal-alert',
-  imports: [
-    MatButtonModule,
-    MatDialogModule,
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <h1 mat-dialog-title>{{ data.title }}</h1>
-    <div mat-dialog-content>
-      {{ data.message }}
-    </div>
-    <div mat-dialog-actions>
-      <button mat-button color="primary" (click)="close()">{{ data.buttonLabel }}</button>
-    </div>
+    <section class="space-y-4">
+      <h1 class="text-lg font-semibold text-slate-950">{{ data.title }}</h1>
+      <p class="text-sm text-slate-700">{{ data.message }}</p>
+      <div class="flex justify-end gap-2">
+        <button class="ui-button ui-button-primary" (click)="close()">
+          {{ data.buttonLabel }}
+        </button>
+      </div>
+    </section>
   `,
 })
 export class ModalAlert {
-  protected readonly dialogRef = inject(MatDialogRef<ModalAlert>);
-  protected readonly data: {
-    title: string,
-    message: string,
-    buttonLabel: string,
-  } = inject(MAT_DIALOG_DATA);
+  protected readonly dialogRef = inject(DialogRef<void>);
+  protected readonly data = inject<ModalAlertData>(DIALOG_DATA);
 
   close() {
     this.dialogRef.close();

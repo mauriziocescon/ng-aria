@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 
-import { MatDialog } from '@angular/material/dialog';
+import { Dialog } from '@angular/cdk/dialog';
 
 import { first } from 'rxjs/operators';
 
@@ -13,28 +13,42 @@ import { ModalConfirmer as ModalConfirmerComp } from './modal-confirmer';
   providedIn: 'root',
 })
 export class ModalManager {
-  private readonly dialog = inject(MatDialog);
+  private readonly dialog = inject(Dialog);
 
   alert(modalAlert: ModalAlert) {
-    const dialogRef = this.dialog.open(ModalAlertComp, {
+    const dialogRef = this.dialog.open<void, ModalAlert, ModalAlertComp>(ModalAlertComp, {
       data: {
+        id: modalAlert.id,
         title: modalAlert.title,
         message: modalAlert.message,
         buttonLabel: modalAlert.buttonLabel,
       },
+      role: 'alertdialog',
+      ariaModal: true,
+      autoFocus: 'first-tabbable',
+      restoreFocus: true,
+      backdropClass: 'ui-dialog-backdrop',
+      panelClass: 'ui-dialog-panel',
     });
-    return dialogRef.afterClosed();
+    return dialogRef.closed;
   }
 
   confirmer(modalConfirmer: ModalConfirmer) {
-    const dialogRef = this.dialog.open(ModalConfirmerComp, {
+    const dialogRef = this.dialog.open<boolean, ModalConfirmer, ModalConfirmerComp>(ModalConfirmerComp, {
       data: {
+        id: modalConfirmer.id,
         title: modalConfirmer.title,
         message: modalConfirmer.message,
         yesButtonLabel: modalConfirmer.yesButtonLabel,
         noButtonLabel: modalConfirmer.noButtonLabel,
       },
+      role: 'alertdialog',
+      ariaModal: true,
+      autoFocus: 'first-tabbable',
+      restoreFocus: true,
+      backdropClass: 'ui-dialog-backdrop',
+      panelClass: 'ui-dialog-panel',
     });
-    return dialogRef.afterClosed().pipe(first());
+    return dialogRef.closed.pipe(first());
   }
 }

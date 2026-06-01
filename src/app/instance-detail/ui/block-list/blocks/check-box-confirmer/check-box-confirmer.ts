@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { ValidityState } from '../../../../../shared/validity-state';
 import { ModalManager } from '../../../../../shared/modal-manager';
@@ -19,32 +17,29 @@ import { CheckBoxConfirmerBlock } from './check-box-confirmer-block';
   imports: [
     FormsModule,
     TranslocoPipe,
-    MatCardModule,
-    MatCheckboxModule,
     ValidityState,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <div class="card-title">{{ "CHECK_BOX_CONFIRMER.HEADER" | transloco }}</div>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <label>{{ label() | transloco }}</label>
-        <mat-checkbox
-          [(ngModel)]="value"
-          (ngModelChange)="valueDidChange()"
-          [disabled]="disabled()"
-          [required]="required()">
-          {{ description() | transloco }}
-        </mat-checkbox>
-      </mat-card-content>
-      <mat-card-actions>
+    <section class="ui-card">
+      <header class="ui-card-header">{{ "CHECK_BOX_CONFIRMER.HEADER" | transloco }}</header>
+      <div class="ui-card-content space-y-2">
+        <div class="ui-label">{{ label() | transloco }}</div>
+        <label class="flex items-start gap-3">
+          <input
+            class="mt-1 size-4 rounded border-slate-300 text-brand focus:ring-brand"
+            type="checkbox"
+            [(ngModel)]="value"
+            (ngModelChange)="valueDidChange()"
+            [disabled]="disabled()"
+            [required]="required()" />
+          <span>{{ description() | transloco }}</span>
+        </label>
+      </div>
+      <footer class="ui-card-actions">
         <span appValidityState [valid]="valid()"></span>
-      </mat-card-actions>
-    </mat-card>
+      </footer>
+    </section>
   `,
 })
 export class CheckBoxConfirmer {

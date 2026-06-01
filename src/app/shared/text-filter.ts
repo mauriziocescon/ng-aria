@@ -7,44 +7,36 @@ import { debounceTime, distinctUntilChanged, skip } from 'rxjs/operators';
 import isEmpty from 'lodash/isEmpty';
 
 import { TranslocoPipe } from '@jsverse/transloco';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
+
+import { Icon } from './icon';
 
 @Component({
   selector: 'app-text-filter',
   imports: [
     FormsModule,
     TranslocoPipe,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
+    Icon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-form-field appearance="outline" class="search-field">
-      <mat-label>{{ 'TEXT_FILTER.PLACEHOLDER' | transloco }}</mat-label>
-      <input
-        type="text"
-        matInput
-        [(ngModel)]="value">
+    <label class="block px-3 py-4">
+      <span class="ui-label">{{ 'TEXT_FILTER.PLACEHOLDER' | transloco }}</span>
+      <span class="relative block">
+        <input
+          class="ui-input pr-10"
+          type="text"
+          [(ngModel)]="value">
       @if (isNotEmpty()) {
-        <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextFilter()">
-          <mat-icon>close</mat-icon>
+        <button
+          type="button"
+          class="ui-icon-button absolute right-0 top-1/2 -translate-y-1/2"
+          aria-label="Clear"
+          (click)="resetTextFilter()">
+          <app-icon name="close" />
         </button>
       }
-    </mat-form-field>
-  `,
-  styles: `
-    .search-field {
-      display: flex;
-      padding-left: var(--padding-s);
-      padding-right: var(--padding-s);
-      padding-top: var(--padding-m);
-      padding-bottom: var(--padding-m);
-    }
+      </span>
+    </label>
   `,
 })
 export class TextFilter {

@@ -46,7 +46,7 @@ import { InstanceCard } from './instance-card';
 
         <ng-template #content>
           @for (instance of instanceListStore.instances(); track instance.id) {
-            <div class="instance">
+            <div class="px-3 py-4">
               <app-instance-card [instance]="instance"/>
             </div>
           }
@@ -57,14 +57,6 @@ import { InstanceCard } from './instance-card';
       <app-scroll-to-top/>
 
     </div>
-  `,
-  styles: `
-    .instance {
-      padding-left: var(--padding-s);
-      padding-right: var(--padding-s);
-      padding-top: var(--padding-m);
-      padding-bottom: var(--padding-m);
-    }
   `,
 })
 export class InstanceListPage implements OnInit {

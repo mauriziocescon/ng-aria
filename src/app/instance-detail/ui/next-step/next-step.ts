@@ -2,10 +2,8 @@ import { ChangeDetectionStrategy, Component, computed, effect, inject, input, un
 import { Location } from '@angular/common';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
 
+import { Icon } from '../../../shared/icon';
 import { ModalManager } from '../../../shared/modal-manager';
 import { ModalAlert } from '../../../shared/modal';
 
@@ -15,62 +13,42 @@ import { InstanceDetailStore } from '../../store/instance-detail-store';
   selector: 'app-next-step',
   imports: [
     TranslocoPipe,
-    MatButtonModule,
-    MatCardModule,
-    MatIconModule,
+    Icon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div class="next-step">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>{{ "NEXT_STEP.HEADER" | transloco }}</mat-card-title>
-        </mat-card-header>
-        <mat-card-actions>
-          <div class="action-btns">
+    <div class="sticky top-0">
+      <section class="ui-card">
+        <header class="ui-card-header">{{ "NEXT_STEP.HEADER" | transloco }}</header>
+        <footer class="ui-card-actions justify-start">
+          <div class="flex flex-col gap-3">
             <button
-              mat-raised-button
-              color="primary"
+              class="ui-button ui-button-primary"
               (click)="moveToNextStep()"
               [disabled]="!instanceDetailStore.isNextStepEnable()">
               {{ "NEXT_STEP.NEXT_STEP" | transloco }}
             </button>
 
             @if (isSynchronized()) {
-              <div>
-                <mat-icon>done</mat-icon>
+              <div class="flex items-center gap-2 text-sm text-success">
+                <app-icon name="done" />
                 <span>{{ "NEXT_STEP.SYNC" | transloco }}</span>
               </div>
             } @else if (instanceDetailStore.isSyncingBlocks()) {
-              <div>
-                <mat-icon>sync</mat-icon>
-                <span>{{ "NEXT_STEP.SYNCING" | transloco }}</span>
-              </div>
-            } @else if (canRetrySync()) {
-              <div (click)="retrySynchronization()">
-                <mat-icon>redo</mat-icon>
-                <span>{{ "NEXT_STEP.RETRY" | transloco }}</span>
-              </div>
-            }
+            <div class="flex items-center gap-2 text-sm text-slate-600">
+              <app-icon name="sync" />
+              <span>{{ "NEXT_STEP.SYNCING" | transloco }}</span>
+            </div>
+          } @else if (canRetrySync()) {
+            <button class="ui-button ui-button-secondary" (click)="retrySynchronization()">
+              <app-icon name="redo" />
+              <span>{{ "NEXT_STEP.RETRY" | transloco }}</span>
+            </button>
+          }
           </div>
-        </mat-card-actions>
-      </mat-card>
+        </footer>
+      </section>
     </div>
-  `,
-  styles: `
-    .next-step {
-      position: sticky;
-      top: 0;
-
-      .action-btns {
-        display: flex;
-        flex-direction: column;
-
-        button {
-          margin: var(--padding-s);
-        }
-      }
-    }
   `,
 })
 export class NextStep {

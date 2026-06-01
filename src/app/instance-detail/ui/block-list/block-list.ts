@@ -30,7 +30,7 @@ import { BlockCompGenerator } from './blocks/block-comp-generator';
 
       <ng-template #content>
         @for (block of blocks(); track block.id) {
-          <div class="generic-block">
+          <div class="px-3 py-4">
             <app-block-comp-generator [instanceId]="instanceId()" [block]="block"/>
           </div>
         }
@@ -39,14 +39,6 @@ import { BlockCompGenerator } from './blocks/block-comp-generator';
     </app-loader>
 
     <app-scroll-to-top/>
-  `,
-  styles: `
-    .generic-block {
-      padding-left: var(--padding-s);
-      padding-right: var(--padding-s);
-      padding-top: var(--padding-m);
-      padding-bottom: var(--padding-m);
-    }
   `,
 })
 export class BlockList {

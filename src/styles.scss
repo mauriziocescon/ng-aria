@@ -1,81 +1,82 @@
 @import 'tailwindcss';
+@import '@angular/cdk/overlay-prebuilt.css';
 
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
-@use '@angular/material' as mat;
-
-html {
-  height: 100%;
-  @include mat.theme((
-    color: (
-      primary: mat.$cyan-palette,
-      tertiary: mat.$orange-palette,
-    ),
-    typography: Roboto,
-    density: 0,
-  ));
+@theme {
+  --color-brand: #004494;
+  --color-accent: #ffeb3b;
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
 }
 
-body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
 
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-
-  // Reset the user agent margin.
-  margin: 0;
-  height: 100%;
+  body {
+    margin: 0;
+    color-scheme: light;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    @apply bg-slate-50 text-slate-950 antialiased;
+  }
 }
 
-/* You can add global styles to this file, and also import other style files */
+@layer components {
+  .ui-card {
+    @apply rounded-lg border border-slate-200 bg-white p-4 shadow-sm;
+  }
 
-// -------------------------------------------------------
-// Root variables
+  .ui-card-header {
+    @apply mb-3 text-base font-semibold text-slate-950;
+  }
 
-:root {
-  --primary-color: #004494;
-  --accent-color: #ffeb3b;
-  --secondary-color: #fff;
-  --info-color: #03a9f4;
-  --success-color: #4caf50;
-  --warning-color: #ff9800;
-  --danger-color: #f44336;
-  --gray-color: #666;
+  .ui-card-content {
+    @apply text-sm text-slate-700;
+  }
 
-  --padding-s: 10px;
-  --padding-m: 15px;
-  --padding-l: 20px;
+  .ui-card-actions {
+    @apply mt-4 flex items-center justify-end gap-2;
+  }
 
-  --full-width: 100%;
-}
+  .ui-button {
+    @apply inline-flex h-10 items-center justify-center gap-2 rounded-md px-4 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-50;
+  }
 
-// -------------------------------------------------------
-// Common style
+  .ui-button-primary {
+    @apply bg-brand text-white hover:bg-blue-800 focus-visible:outline-brand;
+  }
 
-.card-title {
-  padding-top: var(--padding-s);
-  padding-bottom: var(--padding-s);
-}
+  .ui-button-secondary {
+    @apply border border-slate-300 bg-white text-slate-900 hover:bg-slate-50 focus-visible:outline-brand;
+  }
 
-.card-content {
-  width: var(--full-width);
-}
+  .ui-icon-button {
+    @apply inline-flex size-10 items-center justify-center rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:pointer-events-none disabled:opacity-50;
+  }
 
-.full-width-message {
-  width: var(--full-width);
-  padding-top: var(--padding-l);
-  padding-bottom: var(--padding-l);
-  font-size: 1.5rem;
-  text-align: center;
-  font-weight: bold;
+  .ui-input,
+  .ui-select {
+    @apply h-10 w-full rounded-md border border-slate-300 bg-white px-3 text-sm focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/20 disabled:bg-slate-100 disabled:text-slate-500;
+  }
+
+  .ui-label {
+    @apply mb-1 block text-sm font-medium text-slate-800;
+  }
+
+  .ui-hint {
+    @apply mt-1 block text-xs text-slate-500;
+  }
+
+  .ui-dialog-backdrop {
+    @apply bg-slate-950/50;
+  }
+
+  .ui-dialog-panel {
+    @apply w-[min(92vw,28rem)] rounded-lg border border-slate-200 bg-white p-5 shadow-xl;
+  }
+
+  .full-width-message {
+    @apply w-full py-5 text-center text-2xl font-bold;
+  }
 }

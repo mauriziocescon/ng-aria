@@ -2,10 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSign
 import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe } from '@jsverse/transloco';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
+import { Listbox, Option } from '@angular/aria/listbox';
 
 import isEqual from 'lodash/isEqual';
 
@@ -20,39 +17,39 @@ import { DropdownBlock } from './dropdown-block';
   imports: [
     FormsModule,
     TranslocoPipe,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
+    Listbox,
+    Option,
     ValidityState,
-
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <div class="card-title">{{ "DROPDOWN.HEADER" | transloco }}</div>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-form-field appearance="outline" class="card-content">
-          <mat-label>{{ label() | transloco }}</mat-label>
-          <mat-select
-            [(ngModel)]="value"
-            (ngModelChange)="valueDidChange()"
+    <section class="ui-card">
+      <header class="ui-card-header">{{ "DROPDOWN.HEADER" | transloco }}</header>
+      <div class="ui-card-content">
+        <div class="space-y-1">
+          <span class="ui-label">{{ label() | transloco }}</span>
+          <ul
+            ngListbox
+            class="max-h-56 rounded-md border border-slate-300 bg-white p-1"
             [disabled]="disabled()"
-            [required]="required()">
-            @for (value of choices(); track value) {
-              <mat-option [value]="value"> {{ value }}</mat-option>
+            [values]="value() === null ? [] : [value()]"
+            (valuesChange)="selectDropdownValue($event)">
+            @for (choice of choices(); track choice) {
+              <li
+                ngOption
+                [value]="choice"
+                [label]="choice"
+                class="cursor-pointer rounded px-3 py-2 text-sm outline-none hover:bg-slate-100 data-[active=true]:bg-slate-100 aria-selected:bg-brand aria-selected:text-white">
+                {{ choice }}
+              </li>
             }
-          </mat-select>
-        </mat-form-field>
-      </mat-card-content>
-      <mat-card-actions>
+          </ul>
+        </div>
+      </div>
+      <footer class="ui-card-actions">
         <span appValidityState [valid]="valid()"></span>
-      </mat-card-actions>
-    </mat-card>
+      </footer>
+    </section>
   `,
 })
 export class Dropdown {
@@ -67,6 +64,11 @@ export class Dropdown {
   protected readonly label = computed(() => this.block().label);
   protected readonly choices = computed(() => this.block().choices, { equal: isEqual });
   protected readonly valid = computed(() => this.block().valid);
+
+  selectDropdownValue(values: (string | null)[]) {
+    this.value.set(values[0] ?? null);
+    this.valueDidChange();
+  }
 
   valueDidChange() {
     this.instanceDetailStore.updateBlock({

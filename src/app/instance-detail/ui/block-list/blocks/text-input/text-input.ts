@@ -2,15 +2,11 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSign
 import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe } from '@jsverse/transloco';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 
 import isEmpty from 'lodash/isEmpty';
 import isEqual from 'lodash/isEqual';
 
+import { Icon } from '../../../../../shared/icon';
 import { ValidityState } from '../../../../../shared/validity-state';
 
 import { InstanceDetailStore } from '../../../../store/instance-detail-store';
@@ -22,46 +18,44 @@ import { TextInputBlock } from './text-input-block';
   imports: [
     FormsModule,
     TranslocoPipe,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
+    Icon,
     ValidityState,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <div class="card-title">{{ "TEXT_INPUT.HEADER" | transloco }}</div>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-form-field appearance="outline" class="card-content">
-          <mat-label>{{ label() | transloco }}</mat-label>
+    <section class="ui-card">
+      <header class="ui-card-header">{{ "TEXT_INPUT.HEADER" | transloco }}</header>
+      <div class="ui-card-content">
+        <label class="block">
+          <span class="ui-label">{{ label() | transloco }}</span>
+          <span class="relative block">
           <input
+            class="ui-input pr-10"
             type="text"
-            matInput
             [(ngModel)]="value"
             (ngModelChange)="valueDidChange()"
             [disabled]="disabled()"
             [required]="required()"
-            placeholder="{{ 'TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | transloco }}" />
-          @if (isNotEmpty()) {
-            <button matSuffix mat-icon-button aria-label="Clear" (click)="resetTextInput()">
-              <mat-icon>close</mat-icon>
+            [placeholder]="'TEXT_INPUT.TEXT_INPUT_PLACEHOLDER' | transloco" />
+            @if (isNotEmpty()) {
+              <button
+                type="button"
+                class="ui-icon-button absolute right-0 top-1/2 -translate-y-1/2"
+                aria-label="Clear"
+                (click)="resetTextInput()">
+              <app-icon name="close" />
             </button>
-          }
+            }
+          </span>
           @if (showHint()) {
-            <mat-hint>{{ message() | transloco: hintParams() }}</mat-hint>
+            <span class="ui-hint">{{ message() | transloco: hintParams() }}</span>
           }
-        </mat-form-field>
-      </mat-card-content>
-      <mat-card-actions>
+        </label>
+      </div>
+      <footer class="ui-card-actions">
         <span appValidityState [valid]="valid()"></span>
-      </mat-card-actions>
-    </mat-card>
+      </footer>
+    </section>
   `,
 })
 export class TextInput {

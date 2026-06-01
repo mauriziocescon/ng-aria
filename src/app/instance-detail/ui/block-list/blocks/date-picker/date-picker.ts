@@ -2,12 +2,6 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSign
 import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe } from '@jsverse/transloco';
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
 
 import { ValidityState } from '../../../../../shared/validity-state';
 
@@ -20,41 +14,29 @@ import { DatePickerBlock } from './date-picker-block';
   imports: [
     FormsModule,
     TranslocoPipe,
-    MatCardModule,
-    MatCheckboxModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatNativeDateModule,
     ValidityState,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>
-          <div class="card-title">{{ "DATE_PICKER.HEADER" | transloco }}</div>
-        </mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <mat-form-field appearance="outline" class="card-content">
-          <mat-label>{{ label() | transloco }}</mat-label>
+    <section class="ui-card">
+      <header class="ui-card-header">{{ "DATE_PICKER.HEADER" | transloco }}</header>
+      <div class="ui-card-content">
+        <label class="block">
+          <span class="ui-label">{{ label() | transloco }}</span>
           <input
-            matInput
-            [matDatepicker]="picker1"
+            class="ui-input"
+            type="date"
             [(ngModel)]="value"
             (ngModelChange)="valueDidChange()"
             [disabled]="disabled()"
             [required]="required()"/>
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker1"/>
-          <mat-datepicker #picker1/>
-        </mat-form-field>
-      </mat-card-content>
-      <mat-card-actions>
+          <span class="ui-hint">YYYY-MM-DD</span>
+        </label>
+      </div>
+      <footer class="ui-card-actions">
         <span appValidityState [valid]="valid()"></span>
-      </mat-card-actions>
-    </mat-card>
+      </footer>
+    </section>
   `,
 })
 export class DatePicker {
@@ -63,7 +45,7 @@ export class DatePicker {
   readonly instanceId = input.required<string>();
   readonly block = input.required<DatePickerBlock>();
 
-  protected readonly value = linkedSignal(() => this.block().value ?? null);
+  protected readonly value = linkedSignal(() => this.toDateInputValue(this.block().value));
   protected readonly disabled = computed(() => this.block().disabled);
   protected readonly required = computed(() => this.block().required);
   protected readonly label = computed(() => this.block().label);
@@ -74,7 +56,28 @@ export class DatePicker {
     this.instanceDetailStore.updateBlock({
       instanceId: this.instanceId(),
       blockId: this.block().id,
-      value: this.value(),
+      value: this.toIsoDateValue(this.value()),
     });
+  }
+
+  private toDateInputValue(value: string | null | undefined) {
+    if (!value) {
+      return null;
+    }
+
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) {
+      return null;
+    }
+
+    return date.toISOString().slice(0, 10);
+  }
+
+  private toIsoDateValue(value: string | null) {
+    if (!value) {
+      return null;
+    }
+
+    return new Date(`${value}T00:00:00.000Z`).toISOString();
   }
 }

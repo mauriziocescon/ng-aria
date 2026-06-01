@@ -2,56 +2,61 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { Router } from '@angular/router';
 
 import { TranslocoPipe } from '@jsverse/transloco';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { Menu, MenuItem, MenuTrigger } from '@angular/aria/menu';
 
 import { AppConstants } from '../core/app-constants';
 import { AppLanguage } from '../core/app-language';
+
+import { Icon } from './icon';
 
 @Component({
   selector: 'app-navigation-bar',
   imports: [
     TranslocoPipe,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatToolbarModule,
+    Menu,
+    MenuItem,
+    MenuTrigger,
+    Icon,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <mat-toolbar color="primary">
-      <span>{{ "NAVIGATION_BAR.NAME" | transloco }}</span>
-      <button mat-button aria-label="go to instances" (click)="goToInstanceList()">
+    <header class="flex h-14 items-center gap-3 bg-brand px-4 text-white">
+      <span class="font-semibold">{{ "NAVIGATION_BAR.NAME" | transloco }}</span>
+      <button class="ui-button text-white hover:bg-white/10" aria-label="go to instances" (click)="goToInstanceList()">
         {{ "NAVIGATION_BAR.INSTANCES" | transloco }}
       </button>
 
-      <span class="spacer"></span>
+      <span class="flex-1"></span>
 
       @if (canOpenJsonServer()) {
-        <button mat-icon-button aria-label="open json server" (click)="openJsonServer()">
-          <mat-icon>dns</mat-icon>
+        <button class="ui-icon-button text-white hover:bg-white/10" aria-label="open json server"
+                (click)="openJsonServer()">
+          <app-icon name="dns" />
         </button>
       }
 
-      <button mat-button [matMenuTriggerFor]="menu" aria-label="selected language">
-        {{ selectedLanguageId() }}
-      </button>
-      <mat-menu #menu="matMenu">
-        @for (language of languages(); track language) {
-          <button mat-menu-item (click)="selectLanguage(language)">
-            <span>{{ language }}</span>
-          </button>
-        }
-      </mat-menu>
-
-    </mat-toolbar>
-  `,
-  styles: `
-    .spacer {
-      flex: 1 1 auto;
-    }
+      <div class="relative">
+        <button class="ui-button text-white hover:bg-white/10" ngMenuTrigger [menu]="menu"
+                aria-label="selected language">
+          {{ selectedLanguageId() }}
+          <app-icon name="chevron-down" />
+        </button>
+        <div
+          ngMenu
+          #menu="ngMenu"
+          class="absolute right-0 top-12 z-50 min-w-32 rounded-md border border-slate-200 bg-white p-1 text-slate-950 shadow-lg data-[visible=false]:hidden">
+          @for (language of languages(); track language) {
+            <button
+              ngMenuItem
+              [value]="language"
+              class="block w-full rounded px-3 py-2 text-left text-sm hover:bg-slate-100 data-[active=true]:bg-slate-100"
+              (click)="selectLanguage(language)">
+              <span>{{ language }}</span>
+            </button>
+          }
+        </div>
+      </div>
+    </header>
   `,
 })
 export class NavigationBar {
