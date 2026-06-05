@@ -1,6 +1,10 @@
 import { ApplicationConfig, inject, isDevMode, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { provideRouter } from '@angular/router';
+import {
+  provideRouter, withComponentInputBinding,
+  withExperimentalAutoCleanupInjectors,
+  withExperimentalPlatformNavigation,
+} from '@angular/router';
 
 import { provideTransloco } from '@jsverse/transloco';
 
@@ -13,7 +17,12 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(withFetch()),
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      withComponentInputBinding(),
+      withExperimentalPlatformNavigation(),
+      withExperimentalAutoCleanupInjectors(),
+    ),
     provideTransloco({
       config: {
         prodMode: !isDevMode(),
