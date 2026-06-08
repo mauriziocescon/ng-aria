@@ -8,9 +8,7 @@ import { AppConstants } from '../../core/app-constants';
 
 import { Block } from '../../shared/block';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class InstanceDetailDataClient {
   private readonly http = inject(HttpClient);
   private readonly appConstants = inject(AppConstants);

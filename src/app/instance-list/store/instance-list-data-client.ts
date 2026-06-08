@@ -8,9 +8,7 @@ import { AppConstants } from '../../core/app-constants';
 
 import { Instance } from '../model/instance';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class InstanceListDataClient {
   private readonly http = inject(HttpClient);
   private readonly appConstants = inject(AppConstants);

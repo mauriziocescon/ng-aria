@@ -19,9 +19,7 @@ type State = {
   lastPage: boolean;
 };
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class InstanceListStore {
   private readonly destroyRef = inject(DestroyRef);
   private readonly instanceListDataClient = inject(InstanceListDataClient);

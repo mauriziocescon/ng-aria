@@ -15,9 +15,7 @@ type State = {
   syncError: string | undefined;
 };
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class InstanceDetailStore {
   private readonly destroyRef = inject(DestroyRef);
   private readonly instanceDetail = inject(InstanceDetailDataClient);
