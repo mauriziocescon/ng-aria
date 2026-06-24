@@ -19,7 +19,7 @@ import { Icon } from './icon';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <label class="block rounded-lg border border-white/70 bg-white/80 p-4 shadow-sm ring-1 ring-slate-950/5 backdrop-blur">
+    <label class="block rounded-lg border border-white/70 bg-white/80 p-4 shadow-sm ring-1 ring-slate-950/5 backdrop-blur dark:border-slate-700/70 dark:bg-slate-800/80 dark:ring-white/5">
       <span class="ui-label">{{ 'TEXT_FILTER.PLACEHOLDER' | transloco }}</span>
       <span class="relative block">
         <input
@@ -29,7 +29,7 @@ import { Icon } from './icon';
       @if (isNotEmpty()) {
         <button
           type="button"
-          class="ui-icon-button absolute right-1 top-1/2 -translate-y-1/2 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+          class="ui-icon-button absolute right-1 top-1/2 -translate-y-1/2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-100"
           aria-label="Clear"
           (click)="resetTextFilter()">
           <app-icon name="close" />

@@ -89,6 +89,20 @@ import { TranslocoPipe } from '@jsverse/transloco';
         }
       }
     }
+
+    @media (prefers-color-scheme: dark) {
+      :host.loader {
+        &::after {
+          background: rgba(15, 23, 42, 0.6);
+        }
+
+        .spinner::before {
+          border-color: rgba(56, 189, 248, 0.2);
+          border-bottom-color: #38bdf8;
+          box-shadow: 0 18px 45px -22px rgba(0, 0, 0, 0.8);
+        }
+      }
+    }
   `,
   host: {
     '[class]': 'hostCssClasses()',

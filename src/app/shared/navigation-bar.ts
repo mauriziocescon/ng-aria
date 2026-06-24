@@ -20,7 +20,7 @@ import { Icon } from './icon';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <header class="sticky top-0 z-40 flex h-16 items-center gap-3 border-b border-white/15 bg-[linear-gradient(135deg,#00346f,#004494_48%,#0f766e)] px-4 text-white shadow-lg shadow-slate-950/15 backdrop-blur">
+    <header class="sticky top-0 z-40 flex h-16 items-center gap-3 border-b border-white/15 bg-[linear-gradient(135deg,#00346f,#004494_48%,#0f766e)] px-4 text-white shadow-lg shadow-slate-950/15 backdrop-blur dark:bg-[linear-gradient(135deg,#001d3d,#002b5c_48%,#064e3b)] dark:shadow-black/25">
       <span class="rounded-md bg-white/10 px-3 py-1.5 text-sm font-bold tracking-wide ring-1 ring-white/15">
         {{ "NAVIGATION_BAR.NAME" | transloco }}
       </span>
@@ -46,12 +46,12 @@ import { Icon } from './icon';
         <div
           ngMenu
           #menu="ngMenu"
-          class="absolute right-0 top-12 z-50 min-w-32 rounded-lg border border-white/70 bg-white/95 p-1.5 text-slate-950 shadow-xl ring-1 ring-slate-950/10 backdrop-blur data-[visible=false]:hidden">
+          class="absolute right-0 top-12 z-50 min-w-32 rounded-lg border border-white/70 bg-white/95 p-1.5 text-slate-950 shadow-xl ring-1 ring-slate-950/10 backdrop-blur data-[visible=false]:hidden dark:border-slate-700/70 dark:bg-slate-800/95 dark:text-slate-100 dark:ring-white/10">
           @for (language of languages(); track language) {
             <button
               ngMenuItem
               [value]="language"
-              class="block w-full rounded-md px-3 py-2 text-left text-sm font-medium hover:bg-sky-50 data-[active=true]:bg-sky-50 data-[active=true]:text-brand"
+              class="block w-full rounded-md px-3 py-2 text-left text-sm font-medium hover:bg-sky-50 data-[active=true]:bg-sky-50 data-[active=true]:text-brand dark:hover:bg-slate-700 dark:data-[active=true]:bg-slate-700 dark:data-[active=true]:text-sky-300"
               (click)="selectLanguage(language)">
               <span>{{ language }}</span>
             </button>

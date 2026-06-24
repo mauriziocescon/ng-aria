@@ -19,11 +19,11 @@ import { Instance } from '../model/instance';
       <header class="ui-card-header">
         <div class="flex items-start justify-between gap-3">
           <div class="min-w-0 truncate text-lg">{{ title() }}</div>
-          <span class="rounded-md bg-sky-50 px-2 py-1 text-xs font-semibold text-brand ring-1 ring-sky-100">
+          <span class="rounded-md bg-sky-50 px-2 py-1 text-xs font-semibold text-brand ring-1 ring-sky-100 dark:bg-sky-950/50 dark:text-sky-300 dark:ring-sky-800/50">
             {{ blocksCounter() }}
           </span>
         </div>
-        <div class="mt-3 flex items-center text-sm font-normal text-slate-500">
+        <div class="mt-3 flex items-center text-sm font-normal text-slate-500 dark:text-slate-400">
           <span appValidityState [valid]="validityState()"></span>
         </div>
       </header>

@@ -42,13 +42,13 @@ export class ValidityState implements OnInit {
   }
 
   private addValidSymbol() {
-    this.renderer.setStyle(this.el.nativeElement, 'color', 'green');
+    this.renderer.setStyle(this.el.nativeElement, 'color', 'var(--validity-valid, #16a34a)');
     this.renderer.setAttribute(this.el.nativeElement, 'aria-label', 'Valid');
     this.renderer.setProperty(this.el.nativeElement, 'innerHTML', VALID_ICON);
   }
 
   private addInvalidSymbol() {
-    this.renderer.setStyle(this.el.nativeElement, 'color', 'red');
+    this.renderer.setStyle(this.el.nativeElement, 'color', 'var(--validity-invalid, #dc2626)');
     this.renderer.setAttribute(this.el.nativeElement, 'aria-label', 'Invalid');
     this.renderer.setProperty(this.el.nativeElement, 'innerHTML', INVALID_ICON);
   }

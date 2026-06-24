@@ -9,8 +9,8 @@ import { ModalConfirmer as ModalConfirmerData } from './modal';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="space-y-4">
-      <h1 class="text-lg font-semibold text-slate-950">{{ data.title }}</h1>
-      <p class="text-sm text-slate-700">{{ data.message }}</p>
+      <h1 class="text-lg font-semibold text-slate-950 dark:text-slate-50">{{ data.title }}</h1>
+      <p class="text-sm text-slate-700 dark:text-slate-300">{{ data.message }}</p>
       <div class="flex justify-end gap-2">
         <button class="ui-button ui-button-primary" (click)="yes()">
           {{ data.yesButtonLabel }}

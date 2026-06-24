@@ -3,6 +3,7 @@
 
 @theme {
   --color-brand: #004494;
+  --color-brand-light: #1d4ed8;
   --color-accent: #ffeb3b;
   --color-success: #16a34a;
   --color-danger: #dc2626;
@@ -22,23 +23,35 @@
 
   body {
     margin: 0;
-    color-scheme: light;
+    color-scheme: light dark;
     font-family: ui-sans-serif, system-ui, sans-serif;
-    @apply bg-[linear-gradient(135deg,#f8fafc_0%,#eef6ff_44%,#f4fbf6_100%)] text-slate-950 antialiased;
+    @apply bg-[linear-gradient(135deg,#f8fafc_0%,#eef6ff_44%,#f4fbf6_100%)] text-slate-950 antialiased dark:bg-[linear-gradient(135deg,#0f172a_0%,#1e293b_44%,#0f172a_100%)] dark:text-slate-50;
+  }
+
+  :root {
+    --validity-valid: #16a34a;
+    --validity-invalid: #dc2626;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --validity-valid: #34d399;
+      --validity-invalid: #f87171;
+    }
   }
 }
 
 @layer components {
   .ui-card {
-    @apply rounded-lg border border-white/70 bg-white/90 p-5 shadow-[0_18px_55px_-35px_rgba(15,23,42,0.45)] ring-1 ring-slate-950/5 backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_24px_70px_-38px_rgba(14,116,144,0.55)];
+    @apply rounded-lg border border-white/70 bg-white/90 p-5 shadow-[0_18px_55px_-35px_rgba(15,23,42,0.45)] ring-1 ring-slate-950/5 backdrop-blur transition duration-200 hover:-translate-y-0.5 hover:border-sky-200 hover:shadow-[0_24px_70px_-38px_rgba(14,116,144,0.55)] dark:border-slate-700/70 dark:bg-slate-800/90 dark:shadow-[0_18px_55px_-35px_rgba(0,0,0,0.7)] dark:ring-white/5 dark:hover:border-sky-700 dark:hover:shadow-[0_24px_70px_-38px_rgba(14,116,144,0.3)];
   }
 
   .ui-card-header {
-    @apply mb-4 text-base font-semibold text-slate-950;
+    @apply mb-4 text-base font-semibold text-slate-950 dark:text-slate-50;
   }
 
   .ui-card-content {
-    @apply text-sm leading-6 text-slate-600;
+    @apply text-sm leading-6 text-slate-600 dark:text-slate-400;
   }
 
   .ui-card-actions {
@@ -50,39 +63,39 @@
   }
 
   .ui-button-primary {
-    @apply bg-[linear-gradient(135deg,#004494,#0f766e)] text-white shadow-brand/25 hover:brightness-110 focus-visible:outline-brand;
+    @apply bg-[linear-gradient(135deg,#004494,#0f766e)] text-white shadow-brand/25 hover:brightness-110 focus-visible:outline-brand dark:bg-[linear-gradient(135deg,#1d4ed8,#0d9488)] dark:shadow-brand-light/25 dark:focus-visible:outline-brand-light;
   }
 
   .ui-button-secondary {
-    @apply border border-slate-200 bg-white/85 text-slate-900 hover:border-sky-200 hover:bg-sky-50 focus-visible:outline-brand;
+    @apply border border-slate-200 bg-white/85 text-slate-900 hover:border-sky-200 hover:bg-sky-50 focus-visible:outline-brand dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-sky-700 dark:hover:bg-slate-700 dark:focus-visible:outline-brand-light;
   }
 
   .ui-icon-button {
-    @apply inline-flex size-10 items-center justify-center rounded-md transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-95 disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex size-10 items-center justify-center rounded-md transition duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:scale-95 disabled:pointer-events-none disabled:opacity-50 dark:focus-visible:outline-brand-light;
   }
 
   .ui-input,
   .ui-select {
-    @apply h-11 w-full rounded-md border border-slate-200 bg-white/90 px-3 text-sm shadow-inner shadow-slate-950/5 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-100 disabled:bg-slate-100 disabled:text-slate-500;
+    @apply h-11 w-full rounded-md border border-slate-200 bg-white/90 px-3 text-sm shadow-inner shadow-slate-950/5 outline-none transition placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-100 disabled:bg-slate-100 disabled:text-slate-500 dark:border-slate-600 dark:bg-slate-900/90 dark:text-slate-100 dark:shadow-black/20 dark:placeholder:text-slate-500 dark:focus:border-sky-500 dark:focus:ring-sky-500/20 dark:disabled:bg-slate-800 dark:disabled:text-slate-500;
   }
 
   .ui-label {
-    @apply mb-1.5 block text-sm font-semibold text-slate-800;
+    @apply mb-1.5 block text-sm font-semibold text-slate-800 dark:text-slate-200;
   }
 
   .ui-hint {
-    @apply mt-1.5 block text-xs text-slate-500;
+    @apply mt-1.5 block text-xs text-slate-500 dark:text-slate-400;
   }
 
   .ui-dialog-backdrop {
-    @apply bg-slate-950/55 backdrop-blur-sm;
+    @apply bg-slate-950/55 backdrop-blur-sm dark:bg-black/70;
   }
 
   .ui-dialog-panel {
-    @apply w-[min(92vw,28rem)] rounded-lg border border-white/70 bg-white/95 p-6 shadow-2xl ring-1 ring-slate-950/10 backdrop-blur;
+    @apply w-[min(92vw,28rem)] rounded-lg border border-white/70 bg-white/95 p-6 shadow-2xl ring-1 ring-slate-950/10 backdrop-blur dark:border-slate-700/70 dark:bg-slate-800/95 dark:ring-white/10;
   }
 
   .full-width-message {
-    @apply mx-auto my-8 w-[min(92vw,44rem)] rounded-lg border border-white/70 bg-white/80 px-6 py-8 text-center text-lg font-semibold text-slate-700 shadow-sm ring-1 ring-slate-950/5;
+    @apply mx-auto my-8 w-[min(92vw,44rem)] rounded-lg border border-white/70 bg-white/80 px-6 py-8 text-center text-lg font-semibold text-slate-700 shadow-sm ring-1 ring-slate-950/5 dark:border-slate-700/70 dark:bg-slate-800/80 dark:text-slate-300 dark:ring-white/5;
   }
 }

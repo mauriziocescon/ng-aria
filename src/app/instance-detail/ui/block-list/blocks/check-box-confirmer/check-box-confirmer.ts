@@ -27,7 +27,7 @@ import { CheckBoxConfirmerBlock } from './check-box-confirmer-block';
         <div class="ui-label">{{ label() | transloco }}</div>
         <label class="flex items-start gap-3">
           <input
-            class="mt-1 size-4 rounded border-slate-300 text-brand focus:ring-brand"
+            class="mt-1 size-4 rounded border-slate-300 text-brand focus:ring-brand dark:border-slate-600 dark:bg-slate-900 dark:text-brand-light dark:focus:ring-brand-light"
             type="checkbox"
             [(ngModel)]="value"
             (ngModelChange)="valueDidChange()"

@@ -57,6 +57,15 @@ import { debounceTime } from 'rxjs/operators';
     .go-up svg {
       display: block;
     }
+
+    @media (prefers-color-scheme: dark) {
+      .go-up {
+        border-color: rgba(51, 65, 85, 0.7);
+        background: rgba(30, 41, 59, 0.9);
+        color: #38bdf8;
+        box-shadow: 0 18px 45px -24px rgba(0, 0, 0, 0.85);
+      }
+    }
   `,
 })
 export class ScrollToTop implements OnDestroy {

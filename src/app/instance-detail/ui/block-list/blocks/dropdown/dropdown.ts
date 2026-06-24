@@ -30,7 +30,7 @@ import { DropdownBlock } from './dropdown-block';
           <span class="ui-label">{{ label() | transloco }}</span>
           <ul
             ngListbox
-            class="max-h-56 rounded-md border border-slate-300 bg-white p-1"
+            class="max-h-56 rounded-md border border-slate-300 bg-white p-1 dark:border-slate-600 dark:bg-slate-900"
             [disabled]="disabled()"
             [values]="value() === null ? [] : [value()]"
             (valuesChange)="selectDropdownValue($event)">
@@ -39,7 +39,7 @@ import { DropdownBlock } from './dropdown-block';
                 ngOption
                 [value]="choice"
                 [label]="choice"
-                class="cursor-pointer rounded px-3 py-2 text-sm outline-none hover:bg-slate-100 data-[active=true]:bg-slate-100 aria-selected:bg-brand aria-selected:text-white">
+                class="cursor-pointer rounded px-3 py-2 text-sm outline-none hover:bg-slate-100 data-[active=true]:bg-slate-100 aria-selected:bg-brand aria-selected:text-white dark:text-slate-200 dark:hover:bg-slate-700 dark:data-[active=true]:bg-slate-700 dark:aria-selected:bg-brand-light">
                 {{ choice }}
               </li>
             }
