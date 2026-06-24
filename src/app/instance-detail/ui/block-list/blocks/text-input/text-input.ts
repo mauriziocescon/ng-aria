@@ -71,7 +71,7 @@ export class TextInput {
   protected readonly valid = computed(() => this.block().valid);
 
   protected readonly isNotEmpty = computed(() => !isEmpty(this.block().value));
-  protected readonly tshowHint = computed(() => {
+  protected readonly showHint = computed(() => {
     const minLength = this.block().minLength ?? -1;
     const maxLength = this.block().maxLength ?? -1;
     return minLength >= 0 || maxLength >= 0;
