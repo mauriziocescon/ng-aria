@@ -1,7 +1,7 @@
 {
   "name": "ng-aria",
   "version": "1.0.0",
-  "description": "A demo application built with angular and aria",
+  "description": "Angular demo app showcasing @angular/aria accessibility patterns",
   "author": "Maurizio Cescon <maurizio.cescon@gmail.com>",
   "homepage": "https://be.linkedin.com/in/mauriziocescon",
   "private": false,
