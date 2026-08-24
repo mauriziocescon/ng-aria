@@ -32,8 +32,8 @@ import { DropdownBlock } from './dropdown-block';
             ngListbox
             class="max-h-56 rounded-md border border-slate-300 bg-white p-1 dark:border-slate-600 dark:bg-slate-900"
             [disabled]="disabled()"
-            [values]="value() === null ? [] : [value()]"
-            (valuesChange)="selectDropdownValue($event)">
+            [value]="value() === null ? [] : [value()]"
+            (valueChange)="selectDropdownValue($event)">
             @for (choice of choices(); track choice) {
               <li
                 ngOption
