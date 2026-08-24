@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
 import localeEn from '@angular/common/locales/en';
@@ -9,9 +9,7 @@ import { TranslocoService } from '@jsverse/transloco';
 import { AppConstants } from './app-constants';
 import { LocalStorage } from './local-storage';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class AppLanguage {
   private readonly transloco = inject(TranslocoService);
   private readonly appConstants = inject(AppConstants);
