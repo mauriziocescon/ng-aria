@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSignal } from '@angular/core';
+import { Component, computed, inject, input, linkedSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -21,7 +21,6 @@ import { TextInputBlock } from './text-input-block';
     Icon,
     ValidityState,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="ui-card">
       <header class="ui-card-header">{{ "TEXT_INPUT.HEADER" | transloco }}</header>

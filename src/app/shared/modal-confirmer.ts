@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 
@@ -6,7 +6,6 @@ import { ModalConfirmer as ModalConfirmerData } from './modal';
 
 @Component({
   selector: 'app-modal-confirmer',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="space-y-4">
       <h1 class="text-lg font-semibold text-slate-950 dark:text-slate-50">{{ data.title }}</h1>

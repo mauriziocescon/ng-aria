@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, untracked } from '@angular/core';
+import { Component, computed, effect, inject, input, untracked } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -18,7 +18,6 @@ import { BlockCompGenerator } from './blocks/block-comp-generator';
     ScrollToTop,
     BlockCompGenerator,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-loader
       [content]="content"

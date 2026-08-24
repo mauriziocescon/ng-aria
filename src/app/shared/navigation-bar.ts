@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -18,7 +18,6 @@ import { Icon } from './icon';
     MenuTrigger,
     Icon,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="sticky top-0 z-40 flex h-16 items-center gap-3 border-b border-white/15 bg-[linear-gradient(135deg,#00346f,#004494_48%,#0f766e)] px-4 text-white shadow-lg shadow-slate-950/15 backdrop-blur dark:bg-[linear-gradient(135deg,#001d3d,#002b5c_48%,#064e3b)] dark:shadow-black/25">
       <span class="rounded-md bg-white/10 px-3 py-1.5 text-sm font-bold tracking-wide ring-1 ring-white/15">

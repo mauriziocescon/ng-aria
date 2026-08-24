@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { NavigationBar } from './shared/navigation-bar';
@@ -9,7 +9,6 @@ import { NavigationBar } from './shared/navigation-bar';
     RouterOutlet,
     NavigationBar,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="min-h-dvh">
       <app-navigation-bar />

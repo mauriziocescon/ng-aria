@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 import { TranslocoPipe } from '@jsverse/transloco';
 
@@ -7,7 +7,6 @@ import { TranslocoPipe } from '@jsverse/transloco';
   imports: [
     TranslocoPipe,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="ui-card">
       <header class="ui-card-header">{{ "UNKNOWN.HEADER" | transloco }}</header>

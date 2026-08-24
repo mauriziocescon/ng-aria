@@ -1,6 +1,5 @@
 import {
   afterNextRender,
-  ChangeDetectionStrategy,
   Component,
   ElementRef,
   inject,
@@ -15,7 +14,6 @@ import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-scroll-to-top',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <button type="button" class="go-up ui-icon-button" aria-label="Scroll to top" (click)="scrollToTop()">
       <svg
