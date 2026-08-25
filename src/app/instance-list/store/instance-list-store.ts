@@ -1,4 +1,4 @@
-import { computed, DestroyRef, inject, Injectable } from '@angular/core';
+import { computed, DestroyRef, inject, Service } from '@angular/core';
 
 import { pipe } from 'rxjs';
 import { filter, switchMap, tap } from 'rxjs/operators';
@@ -19,7 +19,7 @@ type State = {
   lastPage: boolean;
 };
 
-@Injectable()
+@Service({ autoProvided: false })
 export class InstanceListStore {
   private readonly destroyRef = inject(DestroyRef);
   private readonly instanceListDataClient = inject(InstanceListDataClient);

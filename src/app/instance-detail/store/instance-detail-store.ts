@@ -1,4 +1,4 @@
-import { computed, DestroyRef, inject, Injectable, linkedSignal, signal } from '@angular/core';
+import { computed, DestroyRef, inject, linkedSignal, Service, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 
 import { pipe } from 'rxjs';
@@ -15,7 +15,7 @@ type State = {
   syncError: string | undefined;
 };
 
-@Injectable()
+@Service({ autoProvided: false })
 export class InstanceDetailStore {
   private readonly destroyRef = inject(DestroyRef);
   private readonly instanceDetail = inject(InstanceDetailDataClient);
