@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { throwError } from 'rxjs';
@@ -8,7 +8,7 @@ import { AppConstants } from '../../core/app-constants';
 
 import { Instance } from '../model/instance';
 
-@Injectable()
+@Service({ autoProvided: false })
 export class InstanceListDataClient {
   private readonly http = inject(HttpClient);
   private readonly appConstants = inject(AppConstants);
