@@ -38,10 +38,10 @@ import { Icon } from './icon';
   `,
 })
 export class TextFilter implements OnDestroy {
+  readonly valueDidChange = output<string>();
+  
   protected readonly value = signal('');
   protected readonly isNotEmpty = computed(() => !isEmpty(this.value()));
-
-  readonly valueDidChange = output<string>();
 
   protected timeoutRef: number | undefined = undefined;
 
