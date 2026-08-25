@@ -1,5 +1,5 @@
-import { Component, computed, OnDestroy, output, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, computed, linkedSignal, output } from '@angular/core';
+import { debounce, form, FormField } from '@angular/forms/signals';
 
 import isEmpty from 'lodash/isEmpty';
 
@@ -10,7 +10,7 @@ import { Icon } from './icon';
 @Component({
   selector: 'app-text-filter',
   imports: [
-    FormsModule,
+    FormField,
     TranslocoPipe,
     Icon,
   ],
@@ -22,8 +22,7 @@ import { Icon } from './icon';
         <input
           class="ui-input pr-11"
           type="text"
-          [(ngModel)]="value"
-          (ngModelChange)="valueChanges($event)">
+          [formField]="form.value">
         @if (isNotEmpty()) {
           <button
             type="button"
@@ -37,28 +36,23 @@ import { Icon } from './icon';
     </label>
   `,
 })
-export class TextFilter implements OnDestroy {
+export class TextFilter {
   readonly valueDidChange = output<string>();
-  
-  protected readonly value = signal('');
-  protected readonly isNotEmpty = computed(() => !isEmpty(this.value()));
 
-  protected timeoutRef: number | undefined = undefined;
+  private readonly filter = linkedSignal(() => ({ value: '' }), {
+    set: (newValue, rawSet) => {
+      rawSet(newValue);
+      this.valueDidChange.emit(newValue.value);
+    },
+  });
 
-  ngOnDestroy() {
-    clearTimeout(this.timeoutRef);
-  }
+  protected readonly form = form(this.filter, (schemaPath) => {
+    debounce(schemaPath.value, 500);
+  });
 
-  valueChanges(value: string) {
-    clearTimeout(this.timeoutRef);
-
-    this.timeoutRef = setTimeout(() => {
-      this.valueDidChange.emit(value);
-    }, 500);
-  }
+  protected readonly isNotEmpty = computed(() => !isEmpty(this.filter().value));
 
   resetTextFilter() {
-    this.value.set('');
-    this.valueDidChange.emit('');
+    this.filter.set({ value: '' });
   }
 }
