@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Service } from '@angular/core';
 
 import { environment } from '../../environments/environment';
 
@@ -30,9 +30,7 @@ export class LocalStorageKey {
  * Get application constants
  * grouped by field
  */
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class AppConstants {
   private readonly api: Api = new Api();
   private readonly application = new Application();

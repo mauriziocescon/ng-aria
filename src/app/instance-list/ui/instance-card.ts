@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -13,7 +13,6 @@ import { Instance } from '../model/instance';
     TranslocoPipe,
     ValidityState,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="ui-card group flex h-full flex-col">
       <header class="ui-card-header">

@@ -1,10 +1,9 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 export type IconName = 'chevron-down' | 'close' | 'dns' | 'done' | 'redo' | 'sync';
 
 @Component({
   selector: 'app-icon',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     'aria-hidden': 'true',
     class: 'inline-flex size-5 shrink-0',

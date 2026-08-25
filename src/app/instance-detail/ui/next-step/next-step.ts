@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject, input, untracked } from '@angular/core';
+import { Component, computed, effect, inject, input, untracked } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
@@ -15,7 +15,6 @@ import { InstanceDetailStore } from '../../store/instance-detail-store';
     TranslocoPipe,
     Icon,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="sticky top-20">
       <section class="ui-card border-brand/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(239,246,255,0.9))] dark:border-slate-700/70 dark:bg-[linear-gradient(180deg,rgba(30,41,59,0.96),rgba(15,23,42,0.9))]">

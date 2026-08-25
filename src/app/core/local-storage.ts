@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 
 import { AppConstants } from './app-constants';
 
@@ -7,9 +7,7 @@ import { AppConstants } from './app-constants';
  * local storage for the
  * application
  */
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class LocalStorage {
   private readonly appConstants = inject(AppConstants);
 

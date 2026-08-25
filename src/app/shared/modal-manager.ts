@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Service } from '@angular/core';
 
 import { Dialog } from '@angular/cdk/dialog';
 
@@ -9,9 +9,7 @@ import { ModalAlert, ModalConfirmer } from './modal';
 import { ModalAlert as ModalAlertComp } from './modal-alert';
 import { ModalConfirmer as ModalConfirmerComp } from './modal-confirmer';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Service()
 export class ModalManager {
   private readonly dialog = inject(Dialog);
 

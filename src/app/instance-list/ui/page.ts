@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, inject, OnInit, untracked } from '@angular/core';
+import { Component, effect, inject, OnInit, untracked } from '@angular/core';
 
 import { TranslocoService } from '@jsverse/transloco';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
@@ -23,7 +23,6 @@ import { InstanceCard } from './instance-card';
     ScrollToTop,
     InstanceCard,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     InstanceListDataClient,
     InstanceListStore,

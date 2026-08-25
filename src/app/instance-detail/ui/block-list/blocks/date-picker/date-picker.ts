@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSignal } from '@angular/core';
+import { Component, computed, inject, input, linkedSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe } from '@jsverse/transloco';
@@ -16,7 +16,6 @@ import { DatePickerBlock } from './date-picker-block';
     TranslocoPipe,
     ValidityState,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="ui-card">
       <header class="ui-card-header">{{ "DATE_PICKER.HEADER" | transloco }}</header>

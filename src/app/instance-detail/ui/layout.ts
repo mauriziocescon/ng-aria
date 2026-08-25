@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, TemplateRef } from '@angular/core';
+import { Component, computed, inject, input, TemplateRef } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NgTemplateOutlet } from '@angular/common';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
@@ -8,7 +8,6 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
   imports: [
     NgTemplateOutlet,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="mx-auto flex w-full max-w-7xl flex-wrap gap-y-4 px-4 py-6 sm:px-6 lg:px-8">
       <div [class]="leftClass()">

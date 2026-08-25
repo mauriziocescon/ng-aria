@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 
@@ -18,7 +18,6 @@ import { NextStep } from './next-step/next-step';
     BlockList,
     NextStep,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <app-instance-detail-layout [left]="left" [right]="right">
 

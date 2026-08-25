@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { NgComponentOutlet } from '@angular/common';
 
 import { Block, BlockType } from '../../../../shared/block';
@@ -15,7 +15,6 @@ import { Unknown } from './unknown/unknown';
   imports: [
     NgComponentOutlet,
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-container [ngComponentOutlet]="$any(component())" [ngComponentOutletInputs]="inputs()" />
   `,
