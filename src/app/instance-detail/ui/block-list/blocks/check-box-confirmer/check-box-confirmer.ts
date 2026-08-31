@@ -1,5 +1,5 @@
 import { Component, computed, inject, input, linkedSignal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { disabled, form, FormField, required } from '@angular/forms/signals';
 
 import { Subscription } from 'rxjs';
 
@@ -15,7 +15,7 @@ import { CheckBoxConfirmerBlock } from './check-box-confirmer-block';
 @Component({
   selector: 'app-check-box-confirmer',
   imports: [
-    FormsModule,
+    FormField,
     TranslocoPipe,
     ValidityState,
   ],
@@ -28,10 +28,7 @@ import { CheckBoxConfirmerBlock } from './check-box-confirmer-block';
           <input
             class="mt-1 size-4 rounded border-slate-300 text-brand focus:ring-brand dark:border-slate-600 dark:bg-slate-900 dark:text-brand-light dark:focus:ring-brand-light"
             type="checkbox"
-            [(ngModel)]="value"
-            (ngModelChange)="valueDidChange()"
-            [disabled]="disabled()"
-            [required]="required()" />
+            [formField]="checkBoxConfirmerForm.value" />
           <span>{{ description() | transloco }}</span>
         </label>
       </div>
@@ -49,26 +46,32 @@ export class CheckBoxConfirmer {
   readonly instanceId = input.required<string>();
   readonly block = input.required<CheckBoxConfirmerBlock>();
 
-  protected readonly value = linkedSignal(() => this.block().value ?? false);
-  protected readonly disabled = computed(() => this.block().disabled);
-  protected readonly required = computed(() => this.block().required);
   protected readonly label = computed(() => this.block().label);
   protected readonly description = computed(() => this.block().description);
-  protected readonly valid = computed(() => this.block().valid);
+  protected readonly checkBoxConfirmer = linkedSignal(() => ({
+    value: this.block().value ?? false,
+  }), {
+    set: (newModel) => {
+      if (newModel.value) {
+        this.askForConfirmation();
+      } else {
+        this.instanceDetailStore.updateBlock({
+          instanceId: this.instanceId(),
+          blockId: this.block().id,
+          value: newModel.value,
+        });
+      }
+    },
+  });
+
+  protected readonly checkBoxConfirmerForm = form(this.checkBoxConfirmer, (schema) => {
+    required(schema.value, { when: () => this.block().required });
+    disabled(schema.value, { when: () => this.block().disabled });
+  });
+
+  protected readonly valid = computed(() => this.block().valid && this.checkBoxConfirmerForm.value().valid());
 
   private modalSubscription: Subscription | undefined = undefined;
-
-  valueDidChange() {
-    if (this.value() === true) {
-      this.askForConfirmation();
-    } else {
-      this.instanceDetailStore.updateBlock({
-        instanceId: this.instanceId(),
-        blockId: this.block().id,
-        value: this.value(),
-      });
-    }
-  }
 
   private askForConfirmation() {
     this.modalSubscription?.unsubscribe();
@@ -85,10 +88,10 @@ export class CheckBoxConfirmer {
           this.instanceDetailStore.updateBlock({
             instanceId: this.instanceId(),
             blockId: this.block().id,
-            value: this.value(),
+            value: true,
           });
         } else {
-          this.value.set(false);
+          this.checkBoxConfirmerForm.value().value.set(false);
         }
       });
   }
