@@ -51,14 +51,15 @@ export class CheckBoxConfirmer {
   protected readonly checkBoxConfirmer = linkedSignal(() => ({
     value: this.block().value ?? false,
   }), {
-    set: (newModel) => {
+    set: (newModel, rawSet) => {
+      rawSet(newModel);
       if (newModel.value) {
         this.askForConfirmation();
-      } else {
+      } else if (newModel.value !== this.block().value) {
         this.instanceDetailStore.updateBlock({
           instanceId: this.instanceId(),
           blockId: this.block().id,
-          value: newModel.value,
+          value: false,
         });
       }
     },
