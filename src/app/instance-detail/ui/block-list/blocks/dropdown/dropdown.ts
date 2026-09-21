@@ -1,5 +1,4 @@
 import { Component, computed, inject, input, linkedSignal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 import { TranslocoPipe } from '@jsverse/transloco';
 import { Listbox, Option } from '@angular/aria/listbox';
@@ -15,7 +14,6 @@ import { DropdownBlock } from './dropdown-block';
 @Component({
   selector: 'app-dropdown',
   imports: [
-    FormsModule,
     TranslocoPipe,
     Listbox,
     Option,
