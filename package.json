@@ -44,7 +44,7 @@
     "@jsverse/transloco": "^8.2.0",
     "@ngrx/operators": "^22.0.0",
     "@ngrx/signals": "^22.0.0",
-    "cn": "^0.3.2",
+    "cn": "^0.4.0",
     "lodash": "^4.17.21",
     "ngx-infinite-scroll": "^22.0.0",
     "rxjs": "~7.8.0",
