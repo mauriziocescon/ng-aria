@@ -7,6 +7,7 @@ export interface Block {
   value?: any;
   minLength?: number;
   maxLength?: number;
+
   [key: string]: any;
 }
 

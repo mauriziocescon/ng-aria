@@ -1,9 +1,9 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 
 // Simulate server side errors
 export const error = (req: Request, res: Response, next: NextFunction): Response | void => {
   const randomOutcome = Math.random();
-  if (randomOutcome < 0.05 && !req.path.startsWith('/api/')) {
+  if (randomOutcome < 0.05) {
     const choice = Math.random();
 
     if (choice < 0.11) {
@@ -44,7 +44,6 @@ export const error = (req: Request, res: Response, next: NextFunction): Response
       });
     }
   } else {
-    // Continue to the next middleware / route handlers
     next();
   }
 };
