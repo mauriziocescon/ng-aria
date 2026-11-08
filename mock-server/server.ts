@@ -1,5 +1,6 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import cors from 'cors';
 import express from 'express';
 import type { NextFunction, Request, Response } from 'express';
 
@@ -25,6 +26,11 @@ const port = process.env.PORT || 3000;
 if (isProduction) {
   app.use(express.static('./dist/ng-aria/browser'));
 }
+
+// Enable CORS and expose the custom pagination header so cross-origin dev
+// requests (ng serve on :4200 -> mock server on :3000) can read X-Total-Count.
+// The previous mock-server stack bundled cors with permissive defaults; restore it here.
+app.use(cors({ exposedHeaders: ['X-Total-Count'] }));
 
 // Middlewares (run before body parsing and routes, as before)
 app.use(delay);
