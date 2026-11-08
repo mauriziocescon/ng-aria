@@ -1,4 +1,4 @@
-import type { Request, Response, NextFunction } from 'express';
+import type { NextFunction, Request, Response } from 'express';
 
 // Simulate server side errors
 export const error = (req: Request, res: Response, next: NextFunction): Response | void => {

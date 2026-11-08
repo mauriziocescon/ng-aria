@@ -1,5 +1,5 @@
-import express from 'express';
 import type { Request, Response } from 'express';
+import express from 'express';
 
 import { mocks } from '../db/index.ts';
 import type { Block } from '../types/types.ts';

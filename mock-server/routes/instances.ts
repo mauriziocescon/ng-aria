@@ -1,12 +1,12 @@
-import express from 'express';
 import type { Request, Response } from 'express';
+import express from 'express';
 
 import { mocks } from '../db/index.ts';
 
 export const router = express.Router();
 
 router.get('/instances', (req: Request, res: Response) => {
-  const textSearch = req.query.q;
+  const textSearch = String(req.query.q ?? '').toLocaleLowerCase();
   const start = parseInt(req.query._start as string) || 0;
   const limit = parseInt(req.query._limit as string) || 20;
 
