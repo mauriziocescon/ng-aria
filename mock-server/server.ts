@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import jsonServer from 'json-server';
+import cors from 'cors';
 import type { NextFunction, Request, Response } from 'express';
-import { getRouter } from './lowdb.ts';
+import express from 'express';
 
 import { delay } from './middlewares/delay.ts';
 import { error } from './middlewares/errors.ts';
@@ -16,37 +16,39 @@ const __dirname = path.dirname(__filename);
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const app = jsonServer.create();
-const router = getRouter();
-const middlewares = jsonServer.defaults(isProduction ? { static: './dist/ng-aria/browser' } : {});
+const app = express();
 
 // set the port of our application
 // process.env.PORT lets the port to be set by Heroku
 const port = process.env.PORT || 3000;
 
-// Middlewares
-app.use(middlewares);
+// Serve the built frontend in production
+if (isProduction) {
+  app.use(express.static('./dist/ng-aria/browser'));
+}
+
+// Enable CORS and expose the custom pagination header so cross-origin dev
+// requests (ng serve on :4200 -> mock server on :3000) can read X-Total-Count.
+app.use(cors({ exposedHeaders: ['X-Total-Count'] }));
+
+// Middlewares (run before body parsing and routes)
 app.use(delay);
 app.use(error);
 
-// To handle POST, PUT and PATCH you need to use a body-parser
-app.use(jsonServer.bodyParser);
-
-// Rewrite some routes
-app.use(jsonServer.rewriter({}));
+// To handle POST, PUT and PATCH you need body parsing
+app.use(express.json());
 
 // Mount routes
 app.use(`${isProduction ? '/api' : '/'}`, instances.router);
 app.use(`${isProduction ? '/api' : '/'}`, blocks.router);
-app.use(`${isProduction ? '/api' : '/'}`, router);
 
 // Fallback on frontend routes
-app.get('*', (req: Request, res: Response, next: NextFunction) => {
+app.use((req: Request, res: Response, next: NextFunction) => {
   // load index.html (frontend will handle page changes)
   isProduction ? res.sendFile(path.join(__dirname, '../dist/ng-aria/browser/index.html')) : next();
 });
 
 // Start listening
 app.listen(port, () => {
-  console.log(`JSON Server is running! Open the browser at http://localhost:${port}`);
+  console.log(`Mock server is running! Open the browser at http://localhost:${port}`);
 });

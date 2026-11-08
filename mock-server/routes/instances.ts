@@ -1,27 +1,26 @@
-import express, { type Request, type Response } from 'express';
+import express from 'express';
+import type { Request, Response } from 'express';
 
-import { getDb } from '../lowdb.ts';
+import { mocks } from '../db/index.ts';
 
 export const router = express.Router();
 
 router.get('/instances', (req: Request, res: Response) => {
-  const db = getDb();
   const textSearch = req.query.q;
   const start = parseInt(req.query._start as string) || 0;
   const limit = parseInt(req.query._limit as string) || 20;
 
-  const instances = db.get('instances')
+  const instances = mocks.instances
     .filter(inst => {
       const searchStr = typeof textSearch === 'string' ? textSearch : '';
       return textSearch === undefined ||
         textSearch === '' ||
         JSON.stringify(inst).toLowerCase().includes(searchStr.toLowerCase());
     })
-    .slice(start, start + limit)
-    .value();
+    .slice(start, start + limit);
 
-  // set the number of tasks
-  res.setHeader('X-Total-Count', db.get('instances').value().length);
+  // set the number of tasks (unfiltered total)
+  res.setHeader('X-Total-Count', mocks.instances.length);
 
-  return res.status(200).jsonp(instances);
+  return res.status(200).json(instances);
 });
