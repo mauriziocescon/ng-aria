@@ -31,11 +31,11 @@ if (isProduction) {
 // requests (ng serve on :4200 -> mock server on :3000) can read X-Total-Count.
 app.use(cors({ exposedHeaders: ['X-Total-Count'] }));
 
-// Middlewares (run before body parsing and routes, as before)
+// Middlewares (run before body parsing and routes)
 app.use(delay);
 app.use(error);
 
-// To handle POST, PUT and PATCH you need to use a body-parser
+// To handle POST, PUT and PATCH you need body parsing
 app.use(express.json());
 
 // Mount routes
