@@ -44,7 +44,7 @@ export const error = (req: Request, res: Response, next: NextFunction): Response
       });
     }
   } else {
-    // Continue to JSON Server router
+    // Continue to the next middleware / route handlers
     next();
   }
 };
