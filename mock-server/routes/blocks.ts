@@ -1,36 +1,31 @@
-import express, { type Request, type Response } from 'express';
+import express from 'express';
+import type { Request, Response } from 'express';
 
-import { getDb } from '../lowdb.ts';
-import type { Block, Instance } from '../types/types.ts';
+import { mocks } from '../db/index.ts';
+import type { Block } from '../types/types.ts';
 import { validate } from '../utils/validation.ts';
 
 export const router = express.Router();
 
 router.get('/blocks', (req: Request, res: Response) => {
-  const db = getDb();
   const instanceId = req.query.instanceId;
 
-  const foundInstance = db.get('instances')
-    .find({ id: instanceId } as any)
-    .value() as Instance | undefined;
+  const foundInstance = mocks.instances.find(inst => inst.id === instanceId);
 
   if (foundInstance) {
-    return res.status(200).jsonp(foundInstance.blocks);
+    return res.status(200).json(foundInstance.blocks);
   } else {
-    return res.status(400).jsonp({
+    return res.status(400).json({
       error: 'Bad Request',
     });
   }
 });
 
 router.put('/blocks', (req: Request, res: Response) => {
-  const db = getDb();
   const instanceId = req.body.instanceId;
   const newBlocks = req.body.blocks;
 
-  const foundInstance = db.get('instances')
-    .find({ id: instanceId } as any)
-    .value() as Instance | undefined;
+  const foundInstance = mocks.instances.find(inst => inst.id === instanceId);
 
   if (foundInstance) {
     const currentBlocks = foundInstance.blocks;
@@ -45,14 +40,11 @@ router.put('/blocks', (req: Request, res: Response) => {
 
     blocks = validate(blocks);
 
-    db.get('instances')
-      .find({ id: instanceId } as any)
-      .assign({ blocks: blocks })
-      .write();
+    foundInstance.blocks = blocks;
 
-    return res.status(200).jsonp(blocks);
+    return res.status(200).json(blocks);
   } else {
-    return res.status(400).jsonp({
+    return res.status(400).json({
       error: 'Bad Request',
     });
   }
