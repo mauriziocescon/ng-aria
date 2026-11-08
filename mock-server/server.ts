@@ -1,8 +1,8 @@
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import cors from 'cors';
-import express from 'express';
 import type { NextFunction, Request, Response } from 'express';
+import express from 'express';
 
 import { delay } from './middlewares/delay.ts';
 import { error } from './middlewares/errors.ts';
@@ -29,7 +29,6 @@ if (isProduction) {
 
 // Enable CORS and expose the custom pagination header so cross-origin dev
 // requests (ng serve on :4200 -> mock server on :3000) can read X-Total-Count.
-// The previous mock-server stack bundled cors with permissive defaults; restore it here.
 app.use(cors({ exposedHeaders: ['X-Total-Count'] }));
 
 // Middlewares (run before body parsing and routes, as before)
@@ -44,8 +43,6 @@ app.use(`${isProduction ? '/api' : '/'}`, instances.router);
 app.use(`${isProduction ? '/api' : '/'}`, blocks.router);
 
 // Fallback on frontend routes
-// express 5's path-to-regexp no longer accepts a bare '*' string route,
-// so use a no-path catch-all middleware preserving the original behavior.
 app.use((req: Request, res: Response, next: NextFunction) => {
   // load index.html (frontend will handle page changes)
   isProduction ? res.sendFile(path.join(__dirname, '../dist/ng-aria/browser/index.html')) : next();
