@@ -1,9 +1,10 @@
 import { ApplicationConfig, inject, isDevMode, LOCALE_ID, provideBrowserGlobalErrorListeners } from '@angular/core';
 import {
   provideRouter,
+  withAutoCleanupInjectors,
   withComponentInputBinding,
-  withExperimentalAutoCleanupInjectors,
   withExperimentalPlatformNavigation,
+  withRouterResources,
 } from '@angular/router';
 
 import { provideTransloco } from '@jsverse/transloco';
@@ -18,9 +19,10 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(
       routes,
+      withAutoCleanupInjectors(),
       withComponentInputBinding(),
       withExperimentalPlatformNavigation(),
-      withExperimentalAutoCleanupInjectors(),
+      withRouterResources(),
     ),
     provideTransloco({
       config: {
